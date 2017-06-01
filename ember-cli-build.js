@@ -7,8 +7,7 @@ module.exports = function(defaults) {
     // Add options here
 
     fingerprint: {
-        exclude: ['fonts'],
-        prepend: 'https://noteblox.github.io/'
+        enabled: false
     }
   });
 
