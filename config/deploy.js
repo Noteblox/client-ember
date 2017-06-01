@@ -4,9 +4,9 @@ module.exports = function(deployTarget) {
   var ENV = {
     build: {},
     git: {
-        repo: 'https://github.com/Noteblox/client-ember.git',
-        branch: 'gh-pages',
-        worktreePath: '/tmp/deploy'
+        //repo: 'https://github.com/Noteblox/client-ember.git',
+        //branch: 'gh-pages',
+        //worktreePath: '/tmp/deploy'
     }
     // include other plugin configuration that applies to all deploy targets here
 

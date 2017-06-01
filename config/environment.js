@@ -28,7 +28,7 @@ module.exports = function (environment) {
     contentSecurityPolicy: {
       'font-src': "'self' https://fonts.gstatic.com"
     },
-    host: 'http://localhost:8080',
+    apiHost: 'http://localhost:8080',
     namespace: 'noteblox/api/rest',
     namespaceAuth: 'noteblox/api/auth',
     namespaceConfirm: 'noteblox/api/auth/account',
@@ -78,7 +78,7 @@ module.exports = function (environment) {
   }
 
   else if (environment === 'production') {
-    ENV.host = 'https://noteblox.herokuapp.com';
+    ENV.apiHost = 'https://noteblox.herokuapp.com';
     ENV.baseURL = '/client-ember';
     ENV.locationType = 'hash';
   }
