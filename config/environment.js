@@ -79,7 +79,6 @@ module.exports = function (environment) {
   else if (environment === 'production') {
     ENV.apiHost = 'https://noteblox.herokuapp.com';
     ENV.rootURL = '/client-ember/';
-    ENV.locationType = 'hash';
   }
   else if (environment === 'test') {
     // Testem prefers this...
