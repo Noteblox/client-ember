@@ -7,10 +7,9 @@ module.exports = function(deployTarget) {
           environment: 'production' // the default
       },
       // include other plugin configuration that applies to all deploy targets here
-
       git: {
           // The repo that we will deploy to. It defaults to the value of your containing repo's origin remote
-          // repo: 'git@github.com:Noteblox/client-ember.git',
+          repo: 'https://github.com/Noteblox/client-ember.git',
 
           // The branch that we will deploy to. It must already exist. Defaults to "gh-pages"
           // branch: 'gh-pages',
