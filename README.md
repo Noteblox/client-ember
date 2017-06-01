@@ -1,6 +1,6 @@
 # Noteblox Ember Client
 
-Super Rentals is the working repository of the Ember tutorial: https://guides.emberjs.com/v2.9.0/tutorial/ember-cli/
+A modern SPA client for NoteBLOX Server based on Ember.js
 
 ## Prerequisites
 
