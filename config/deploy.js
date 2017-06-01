@@ -2,26 +2,14 @@
 
 module.exports = function(deployTarget) {
   var ENV = {
-      // always build the production environment
-      build: {
-          environment: 'production', // the default
-          outputPath: '../deploy-client-ember'
-      },
-      // include other plugin configuration that applies to all deploy targets here
-      git: {
-          // The repo that we will deploy to. It defaults to the value of your containing repo's origin remote
-          repo: 'https://github.com/Noteblox/client-ember.git',
+    build: {},
+    git: {
+        repo: 'git@github.com:Noteblox/client-ember.git',
+        branch: 'gh-pages',
+        worktreePath: '/tmp/deploy'
+    }
+    // include other plugin configuration that applies to all deploy targets here
 
-          // The branch that we will deploy to. It must already exist. Defaults to "gh-pages"
-          // branch: 'gh-pages',
-
-          // Path where we will create/update a working tree to manipulate the deployment branch.
-          // Defaults to ../deploy-${project.name()}, relative to your project.
-          worktreePath: '../deploy-client-ember',
-
-          // Message to use when committing the deployment, where %@ is replaced with the current git revision.
-          commitMessage: 'Deployed %@'
-      }
   };
 
   if (deployTarget === 'development') {
