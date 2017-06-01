@@ -1,0 +1,148 @@
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+// Define desired color palettes.
+$primary: "indigo";
+$accent: "grey";
+$warn: "red";
+@import "color-palette";
+@import 'ember-paper';
+@import "ember-paper-tabs";
+
+
+
+
+html {
+
+  font-family: 'Lato', sans-serif;
+}
+img.avatar {
+  vertical-align: middle;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  margin-right:8px;
+}
+
+.ember-application > .ember-view, .site-sidenav {
+  min-height: 100%;
+  height: 100%;
+}
+
+nav.top-nav {
+  border-bottom: 1px solid rgb(232, 232, 232);
+}
+
+body {
+  font-size: 1.125rem;
+  line-height: 1.5rem;
+  font-family: Lato,appleLogo,sans-serif;
+  font-variant-ligatures: common-ligatures;
+  color: #555459;
+}
+
+.logo {
+  color: #555;
+}
+
+h1, h2, h3, h4, h5, h6, header {
+  color: #888;
+}
+
+.site-sidenav > md-sidenav {
+  border-right: 1px solid rgb(232, 232, 232);
+}
+.md-menu-toolbar, .md-menu-toolbar-top{
+  border-bottom: 1px solid rgb(232, 232, 232);
+}
+.md-menu-toolbar-top > .md-toolbar-tools,
+.md-menu-toolbar-user > .md-toolbar-tools {
+  padding-left: 0;
+}
+
+md-sidenav > md-card {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+md-card {
+  box-shadow: none;
+}
+
+.username {
+  font-variant: small-caps;
+  font-weight: bolder;
+  font-size: smaller;
+  text-transform: lowercase;
+  color: #888;
+}
+/* ------------------------- breadcrumb ------------------------- */
+.breadcrumb {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  display: inline-block;
+  list-style: none;
+  counter-reset: flag;
+}
+.breadcrumb > li {
+  float: left;
+  display: block;;
+  position: relative;
+  list-style: none;
+  color: #888;
+  font-size: 14px;
+}
+.breadcrumb > li > a {
+  text-decoration: none;
+  outline: none;
+  color: #888;
+  font-style: italic;
+}
+
+.breadcrumb > li:last-child {
+  border-radius: 0 5px 5px 0;
+  padding-right: 20px;
+  font-weight: bold;
+}
+
+.breadcrumb > li::before {
+  float: left;
+  display: block;;
+  position: relative;
+  padding-left:10px;
+  padding-right:10px;
+  content: '/';
+}
+.breadcrumb > li:first-child::before {
+  content: none;
+}
+/*
+.flat > li > a,
+.flat > li > a::after {
+  background: #fff;
+  color: #ec407a;
+  transition: background 0.5s;
+}
+.flat > li > a::before {
+  background: #fff;
+  box-shadow: 0 0 0 1px #ec407a;
+}
+.flat > li > a:hover,
+.flat > li > a.active,
+.flat > li > a:hover::after,
+.flat > li > a.active::after {
+  background: #ec407a;
+}
+.flat > li > a.active:hover {
+  background: #d81b60;
+}
+.flat > li > a:hover,
+.flat > li > a.active {
+  color: #fff;
+}
+.flat > li > a:hover::before,
+.flat > li > a.active::before {
+  color: #ec407a;
+}
+*/

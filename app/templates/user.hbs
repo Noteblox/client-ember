@@ -1,0 +1,66 @@
+
+<div class="jumbo">
+  
+  <h2>Welcome User!</h2>
+  <p>Here you can find the users.</p>
+  {{#link-to 'about' class="button"}}
+    About Us
+  {{/link-to}}
+  
+    <br>
+    <br>
+  
+
+{{slack-search-input
+  placeholder='search for objects'
+  inputValue='' 
+  isPopupHidden=false
+  maxlength=250
+  enter=(action 'filterByUser')
+  
+}}
+   <div class="jumbo">
+
+            
+<p>
+  <strong>Pk:</strong>
+  <span>{{sessionAccount.account.pk}}</span>
+</p>
+
+<p>
+  <strong>Username:</strong>
+  <span>{{sessionAccount.account.username}}</span>
+</p>
+
+<p>
+  <strong>Firstname:</strong>
+  <span>{{sessionAccount.account.firstName}}</span>
+</p>
+
+<p>
+  <strong>Lastname:</strong>
+  <span>{{sessionAccount.account.lastName}}</span>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <span>{{sessionAccount.account.email}}</span>
+</p>
+
+<p>
+  <strong>Password:</strong>
+  <span>{{sessionAccount.account.password}}</span>
+</p>
+
+<p>
+  <strong>Passwordconfirmation:</strong>
+  <span>{{sessionAccount.account.passwordConfirmation}}</span>
+</p>
+
+   </div>
+ 
+</div>
+
+{{outlet}}
+
+

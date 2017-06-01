@@ -1,0 +1,119 @@
+{{#if session.isAuthenticated}}
+  {{#paper-toolbar class="md-menu-toolbar md-menu-toolbar-top" as |toolbar|}}
+
+    {{#toolbar.tools }}
+      {{#paper-list}}
+        {{#paper-item  onClick=(action (transition-to "/"))}}
+          {{paper-icon "home"}}
+          <h3 class="logo">noteblox</h3>
+        {{/paper-item}}
+      {{/paper-list}}
+      {{#paper-sidenav-toggle name="left" as |toggleAction|}}
+        {{#paper-button  classNames="hide-gt-sm" onClick=(action toggleAction)}}
+         {{paper-icon "menu"}}
+        {{/paper-button}}
+      {{/paper-sidenav-toggle}}
+    {{/toolbar.tools}}
+ {{/paper-toolbar}}
+
+ {{#paper-sidenav-container  class="site-sidenav"}}
+
+   {{#paper-sidenav class="md-sidenav-left " name="left" open=leftSideBarOpen onToggle=(action (mut leftSideBarOpen)) }}
+    {{#paper-toolbar class="md-menu-toolbar md-menu-toolbar-user" as |toolbar|}}
+      {{#toolbar.tools}}
+        {{#paper-list}}
+          {{#paper-item class="md-2-line" as |controls| }}
+        {{#if sessionAccount.account.avatarUrl}}
+           <img src={{sessionAccount.account.avatarUrl}} alt={{sessionAccount.account.name}} class="md-avatar user-avatar">
+         {{else}}
+           {{ember-initials class="md-avatar"
+               size=50
+               name=sessionAccount.account.name
+               seedText=sessionAccount.account.name
+               defaultName='?'
+               textColor="white"
+               fontSize=55
+               fontWeight=100
+               fontFamily="Helvetica Neue Light, Arial, sans-serif"
+           }}
+         {{/if}}
+         <div class="md-list-item-text">
+           <h3>{{sessionAccount.account.name}} <span class="username">({{sessionAccount.account.username}})</span></h3>
+           <p>Joined {{moment-to-now sessionAccount.account.createdDate}} </p>
+         </div>
+       {{/paper-item}}
+       {{/paper-list}}
+         <div class="flex">
+           &nbsp;
+          </div>
+         {{#paper-button  onClick=(route-action "invalidateSession") aria-label="Logout"}}
+          {{paper-icon "settings-power"}}
+         {{/paper-button}}
+      {{/toolbar.tools}}
+    {{/paper-toolbar}}
+
+     {{#paper-list}}
+
+       {{#paper-item  onClick=(action (transition-to "home"))}}
+        {{paper-icon "home"}}
+        <p>Home</p>
+       {{/paper-item}}
+       {{#paper-item  onClick=(action (transition-to "accountandprofile"))}}
+        {{paper-icon "person"}}
+        <p>Account</p>
+       {{/paper-item}}
+       {{#paper-item  onClick=(action (transition-to "configureapps"))}}
+        {{paper-icon "apps"}}
+        <p>Configure Apps</p>
+       {{/paper-item}}
+       {{#paper-item  onClick=(action (transition-to "spaces"))}}
+        {{paper-icon "work"}}
+        <p>Spaces</p>
+       {{/paper-item}}
+       {{#paper-item  onClick=(action (transition-to "statistics"))}}
+        {{paper-icon "timeline"}}
+        <p>Statistics</p>
+       {{/paper-item}}
+
+       {{#paper-subheader}}3Administration{{/paper-subheader}}
+
+       {{#paper-item  onClick=(action (transition-to "systemsettings"))}}
+        {{paper-icon "settings"}}
+        <p>System Settings</p>
+       {{/paper-item}}
+       {{#paper-item  onClick=(action (transition-to "users"))}}
+        {{paper-icon "people"}}
+        <p>User Accounts</p>
+       {{/paper-item}}
+       {{#paper-item  onClick=(action (transition-to "clientplans"))}}
+        {{paper-icon "shopping-basket"}}
+        <p>Client Plans</p>
+       {{/paper-item}}
+
+       {{#paper-item  onClick=(action (transition-to "billing"))}}
+        {{paper-icon "payment"}}
+        <p>Billing</p>
+       {{/paper-item}}
+
+     {{/paper-list}}
+
+   {{/paper-sidenav}}
+
+  <div class="layout-row flex">
+    <div class="layout-column flex">
+      {{#paper-toolbar class="hide-sm md-menu-toolbar" as |toolbar|}}
+        {{#toolbar.tools}}
+          {{bread-crumbs tagName="ol"  linkable=true}}
+        {{/toolbar.tools}}
+      {{/paper-toolbar}}
+      {{#paper-content class=" md-padding md-scroll-y main-content"}}
+        {{outlet}}
+      {{/paper-content}}
+    </div>
+  </div>
+
+{{/paper-sidenav-container}}
+
+{{else}}
+   {{outlet}}
+{{/if}}
