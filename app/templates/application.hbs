@@ -54,27 +54,44 @@
 
      {{#paper-list}}
 
-       {{#paper-item  onClick=(action (transition-to "home"))}}
-        {{paper-icon "home"}}
-        <p>Home</p>
-       {{/paper-item}}
-       {{#paper-item  onClick=(action (transition-to "accountandprofile"))}}
+       {{#paper-item  onClick=(action (transition-to "friends"))}}
         {{paper-icon "person"}}
-        <p>Account</p>
+        <p>Friends</p>
        {{/paper-item}}
        {{#paper-item  onClick=(action (transition-to "configureapps"))}}
         {{paper-icon "apps"}}
-        <p>Configure Apps</p>
+        <p>Apps</p>
        {{/paper-item}}
-       {{#paper-item  onClick=(action (transition-to "spaces"))}}
+       {{#paper-item  onClick=(action (transition-to "spacesmy"))}}
         {{paper-icon "work"}}
         <p>Spaces</p>
+       {{/paper-item}}
+       {{#paper-item  onClick=(action (transition-to "websites"))}}
+        {{paper-icon "public"}}
+        <p>Websites</p>
+       {{/paper-item}}
+       {{#paper-item  onClick=(action (transition-to "notes"))}}
+        {{paper-icon "content-paste"}}
+        <p>Notes</p>
+       {{/paper-item}}
+       {{#paper-item  onClick=(action (transition-to "tasks"))}}
+        {{paper-icon "assignment"}}
+        <p>Tasks</p>
        {{/paper-item}}
        {{#paper-item  onClick=(action (transition-to "statistics"))}}
         {{paper-icon "timeline"}}
         <p>Statistics</p>
        {{/paper-item}}
 
+       {{#paper-item  onClick=(action (transition-to "billing"))}}
+        {{paper-icon "payment"}}
+        <p>Billing</p>
+       {{/paper-item}}
+       {{#paper-item  onClick=(action (transition-to "help"))}}
+        {{paper-icon "help-outline"}}
+        <p>Help &amp; Support</p>
+       {{/paper-item}}
+       <!--
        {{#paper-subheader}}3Administration{{/paper-subheader}}
 
        {{#paper-item  onClick=(action (transition-to "systemsettings"))}}
@@ -90,11 +107,7 @@
         <p>Client Plans</p>
        {{/paper-item}}
 
-       {{#paper-item  onClick=(action (transition-to "billing"))}}
-        {{paper-icon "payment"}}
-        <p>Billing</p>
-       {{/paper-item}}
-
+        -->
      {{/paper-list}}
 
    {{/paper-sidenav}}

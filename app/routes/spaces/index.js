@@ -1,9 +1,4 @@
-import BaseSearch  from './base-search';
+import BaseAuthenticated  from '../base-authenticated';
 
-export default BaseSearch.extend( {
-  beforeModel: function(model, transition) {
-
-    this.transitionTo('spaces.joined');
-
-  }
+export default BaseAuthenticated.extend( {
 });

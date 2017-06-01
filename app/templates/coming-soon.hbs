@@ -1,0 +1,22 @@
+
+ <!-- app/templates/coming-soon.hbs -->
+ <div class="layout-fill layout-row layout-align-center-start ">
+ {{#paper-card as |card|}}
+   {{#paper-toolbar class="md-menu-toolbar" as |toolbar|}}
+     {{#toolbar.tools class="layout-row"}}
+       <span class="flex"></span>
+       <h2> Coming Soon! </h2>
+       <span class="flex"></span>
+     {{/toolbar.tools}}
+   {{/paper-toolbar}}
+
+
+   {{#card.content}}
+     <p>
+Noteblox is Open Source and completely free. If you have any questions, send us a message at support@noteblox.com.
+     </p>
+   {{/card.content}}
+
+
+ {{/paper-card}}
+ </div>
