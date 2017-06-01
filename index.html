@@ -1,41 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>SuperRentals</title>
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>NoteBLOX: A New And Better Way To Work</title>
+    <meta name="description" content="NoteBLOX: A New And Better Way To Work">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  
-<meta name="noteblox-client-ember/config/environment" content="%7B%22modulePrefix%22%3A%22noteblox-client-ember%22%2C%22environment%22%3A%22production%22%2C%22rootURL%22%3A%22/%22%2C%22locationType%22%3A%22hash%22%2C%22EmberENV%22%3A%7B%22FEATURES%22%3A%7B%7D%2C%22EXTEND_PROTOTYPES%22%3A%7B%22Date%22%3Afalse%7D%7D%2C%22APP%22%3A%7B%22usingCors%22%3Atrue%2C%22corsWithCreds%22%3Atrue%2C%22name%22%3A%22noteblox-client-ember%22%2C%22version%22%3A%220.0.0+13e93b04%22%7D%2C%22contentSecurityPolicy%22%3A%7B%22font-src%22%3A%22%27self%27%20https%3A//fonts.gstatic.com%22%7D%2C%22apiHost%22%3A%22https%3A//noteblox.herokuapp.com%22%2C%22namespace%22%3A%22noteblox/api/rest%22%2C%22namespaceAuth%22%3A%22noteblox/api/auth%22%2C%22authorizer%22%3A%22authorizer%3Acustom%22%2C%22moment%22%3A%7B%22allowEmpty%22%3Atrue%2C%22localeOutputPath%22%3A%22assets/moment-locales%22%2C%22includeTimezone%22%3A%22all%22%7D%2C%22ember-simple-auth%22%3A%7B%22authorizer%22%3A%22authorizer%3Acustom%22%2C%22authenticationRoute%22%3A%22auth.login%22%7D%2C%22baseURL%22%3A%22/client-ember%22%2C%22ember-cli-mirage%22%3A%7B%22usingProxy%22%3Afalse%2C%22useDefaultPassthroughs%22%3Atrue%7D%2C%22ember-paper%22%3A%7B%22insertFontLinks%22%3Atrue%7D%2C%22exportApplicationGlobal%22%3Afalse%7D" />
+    
+<meta name="noteblox-client-ember/config/environment" content="%7B%22modulePrefix%22%3A%22noteblox-client-ember%22%2C%22environment%22%3A%22production%22%2C%22rootURL%22%3A%22/%22%2C%22locationType%22%3A%22hash%22%2C%22EmberENV%22%3A%7B%22FEATURES%22%3A%7B%7D%2C%22EXTEND_PROTOTYPES%22%3A%7B%22Date%22%3Afalse%7D%7D%2C%22APP%22%3A%7B%22usingCors%22%3Atrue%2C%22corsWithCreds%22%3Atrue%2C%22name%22%3A%22noteblox-client-ember%22%2C%22version%22%3A%220.0.0+fda68271%22%7D%2C%22contentSecurityPolicy%22%3A%7B%22font-src%22%3A%22%27self%27%20https%3A//fonts.gstatic.com%22%7D%2C%22apiHost%22%3A%22https%3A//noteblox.herokuapp.com%22%2C%22namespace%22%3A%22noteblox/api/rest%22%2C%22namespaceAuth%22%3A%22noteblox/api/auth%22%2C%22authorizer%22%3A%22authorizer%3Acustom%22%2C%22moment%22%3A%7B%22allowEmpty%22%3Atrue%2C%22localeOutputPath%22%3A%22assets/moment-locales%22%2C%22includeTimezone%22%3A%22all%22%7D%2C%22ember-simple-auth%22%3A%7B%22authorizer%22%3A%22authorizer%3Acustom%22%2C%22authenticationRoute%22%3A%22auth.login%22%7D%2C%22baseURL%22%3A%22/client-ember%22%2C%22ember-cli-mirage%22%3A%7B%22usingProxy%22%3Afalse%2C%22useDefaultPassthroughs%22%3Atrue%7D%2C%22ember-paper%22%3A%7B%22insertFontLinks%22%3Atrue%7D%2C%22exportApplicationGlobal%22%3Afalse%7D" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic"><link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
-  <link rel="stylesheet" href="https://noteblox.github.io/assets/vendor-aa2b1685160f02933e771f9b9fdb1ae6.css">
-  <link rel="stylesheet" href="https://noteblox.github.io/assets/noteblox-client-ember-dbf74a9f9a70a1628ecae590180b1b35.css">
-  <!--link href="../../assets/simple-line-icons.css" rel="stylesheet" -->
+    <link rel="stylesheet" href="https://noteblox.github.io/assets/vendor-aa2b1685160f02933e771f9b9fdb1ae6.css">
+    <link rel="stylesheet" href="https://noteblox.github.io/assets/noteblox-client-ember-dbf74a9f9a70a1628ecae590180b1b35.css">
+    <!--link href="../../assets/simple-line-icons.css" rel="stylesheet" -->
 
-  
+    
 </head>
 <body>
-
-<script src="https://noteblox.github.io/assets/vendor-8c0daad096dca7cd19d57d76c9673939.js"></script>
-<script src="https://noteblox.github.io/assets/noteblox-client-ember-e2475e810322bbe82a5005bb912571a3.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?v=3.22"></script>
-<!-- <script src="bower_components/jquery/dist/jquery.min.js"></script>-->
-<!--<script src="../../bower_components/tether/dist/js/tether.min.js"></script>-->
-<!--<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>-->
-<!--script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
-        integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
-        crossorigin="anonymous"></script-->
-<!--script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
-        integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
-        crossorigin="anonymous"></script-->
-<!--script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
-        integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
-        crossorigin="anonymous"></script-->
-
-
-<div id="ember-basic-dropdown-wormhole"></div>
+    
+    <script src="https://noteblox.github.io/assets/vendor-8c0daad096dca7cd19d57d76c9673939.js"></script>
+    <script src="https://noteblox.github.io/assets/noteblox-client-ember-8ba2cce37b9a5f9018ca7824307f78c9.js"></script>
+    <div id="ember-basic-dropdown-wormhole"></div>
 </body>
 </html>
