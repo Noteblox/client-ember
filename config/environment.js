@@ -2,7 +2,7 @@
 
 module.exports = function (environment) {
   var ENV = {
-    modulePrefix: 'super-rentals',
+    modulePrefix: 'noteblox-client-ember',
     environment: environment,
     rootURL: '/',
     locationType: 'auto',
@@ -28,10 +28,9 @@ module.exports = function (environment) {
     contentSecurityPolicy: {
       'font-src': "'self' https://fonts.gstatic.com"
     },
-    host: 'http://localhost:8080',
+    apiHost: 'http://localhost:8080',
     namespace: 'noteblox/api/rest',
     namespaceAuth: 'noteblox/api/auth',
-    namespaceConfirm: 'noteblox/api/auth/account',
     authorizer: 'authorizer:custom',
     // moment js
     moment: {
@@ -78,8 +77,8 @@ module.exports = function (environment) {
   }
 
   else if (environment === 'production') {
-    ENV.baseURL = '/project-name';
-    ENV.locationType = 'hash';
+    ENV.apiHost = 'https://noteblox.herokuapp.com';
+    ENV.rootURL = '/client-ember/';
   }
   else if (environment === 'test') {
     // Testem prefers this...

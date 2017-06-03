@@ -1,5 +1,6 @@
 // app/controllers/confirmation-email.js
 import Ember from "ember";
+import ENV from "../config/environment";
 
 export default Ember.Controller.extend({
   session: Ember.inject.service(),
@@ -11,7 +12,7 @@ export default Ember.Controller.extend({
 
    return new Ember.RSVP.Promise((resolve, reject) => {
     Ember.$.ajax({
-      url: 'http://localhost:8080/restdude/api/auth/account',//this.serverTokenEndpoint, //`${config.namespaceConfirm}`
+      url: `${ENV.apiHost}/${ENV.namespaceAuth}/account`,
       type: 'PUT',
       data: JSON.stringify({
         //resetPasswordToken: resetPasswordToken,

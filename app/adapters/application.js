@@ -7,7 +7,7 @@ import ENV from "../config/environment";
 
 export default DS.JSONAPIAdapter.extend(DataAdapterMixin, {
 
-  host: `${ENV.host}`,
+  host: `${ENV.apiHost}`,
   namespace: `${ENV.namespace}`,
   authorizer: `${ENV.authorizer}`,
   headers: {

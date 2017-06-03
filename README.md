@@ -1,6 +1,6 @@
-# Super-rentals
+# Noteblox Ember Client
 
-Super Rentals is the working repository of the Ember tutorial: https://guides.emberjs.com/v2.9.0/tutorial/ember-cli/
+A modern SPA client for NoteBLOX Server based on Ember.js
 
 ## Prerequisites
 
@@ -24,19 +24,15 @@ You will need the following things properly installed on your computer.
 
 ### Backend
 
-To use the Spring Boot backend for authentication:
+Use the Noteblox Server backend:
 
-a) Fetch the latest
+a) Fetch and build:
  
 ```
-cd restdude
-git pull
-```
+git clone https://github.com/Noteblox/Noteblox-Server.git
 
-b) Start the Spring Boot version of restdude:
+cd Noteblox-Server
 
-```
-cd restdude-boot
 mvn clean install spring-boot:run
 ```
 

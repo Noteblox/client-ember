@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import { initialize } from 'super-rentals/initializers/ajax';
+import { initialize } from 'noteblox-client-ember/initializers/ajax';
 import { module, test } from 'qunit';
 import destroyApp from '../../helpers/destroy-app';
 

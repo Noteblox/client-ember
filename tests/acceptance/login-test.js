@@ -1,9 +1,9 @@
 import {test} from "qunit";
-import moduleForAcceptance from "super-rentals/tests/helpers/module-for-acceptance";
+import moduleForAcceptance from "noteblox-client-ember/tests/helpers/module-for-acceptance";
 import Ember from "ember";
 // These test helps are included with ESA, and
 // are absolutely critical for sane testing.
-import {authenticateSession, currentSession, invalidateSession} from "super-rentals/tests/helpers/ember-simple-auth";
+import {authenticateSession, currentSession, invalidateSession} from "noteblox-client-ember/tests/helpers/ember-simple-auth";
 
 moduleForAcceptance('Acceptance | login');
 
