@@ -1,32 +1,27 @@
-/* jshint node: true */
+  /* jshint node: true */
 
 module.exports = function(deployTarget) {
+  deployTarget || (deployTarget = 'dev');
+  ENV.build = {
+  };
   var ENV = {
-    build: {},
-    git: {
-        //repo: 'https://github.com/Noteblox/client-ember.git',
-        //branch: 'gh-pages',
-        //worktreePath: '/tmp/deploy'
-    }
     // include other plugin configuration that applies to all deploy targets here
-
+    build: {
+      environment: 'development'
+    }
   };
 
 
-  if (deployTarget === 'development') {
-    ENV.build.environment = 'development';
-    // configure other plugins for development deploy target here
-  }
-
-  if (deployTarget === 'staging') {
-    ENV.build.environment = 'production';
+  if (deployTarget === 'embed') {
+    ENV.build.environment = 'embed';
     // configure other plugins for staging deploy target here
+
+
+    console.log("embedded: "  );
+    ENV.APP.rootElement = '#restdude-embedded';
+    ENV.locationType = 'none';
   }
 
-  if (deployTarget === 'production') {
-    ENV.build.environment = 'production';
-    // configure other plugins for production deploy target here
-  }
 
   // Note: if you need to build some configuration asynchronously, you can return
   // a promise that resolves with the ENV object instead of returning the

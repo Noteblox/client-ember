@@ -1,6 +1,5 @@
 import Ember from 'ember';
-import BaseAuthenticated  from './base-authenticated';
+import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 
-export default BaseAuthenticated.extend( {
-    templateName: 'coming-soon'
+export default Ember.Route.extend(AuthenticatedRouteMixin,{
 });

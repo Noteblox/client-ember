@@ -7,6 +7,7 @@ $warn: "red";
 @import "color-palette";
 @import 'ember-paper';
 @import "ember-paper-tabs";
+@import "ember-paper-expansion-panel";
 
 
 
@@ -37,7 +38,7 @@ body {
   line-height: 1.5rem;
   font-family: Lato,appleLogo,sans-serif;
   font-variant-ligatures: common-ligatures;
-  color: rgb(140, 140, 140);
+  color: #555459;
 }
 
 .logo {
