@@ -21,22 +21,16 @@ Router.map(function() {
   this.route('application-embed');
   this.route('account');
   this.route('confirmationEmail');
-  this.route('friends', function() {
-      this.route('show', {
-        path: ':friend_id'
-      });
-  });
-
   this.route('users', function() {
-      this.route('new');
+    this.route('new');
 
-      this.route('edit', {
-          path: ':user_id/edit'
-      });
+    this.route('edit', {
+      path: ':user_id/edit'
+    });
 
-      this.route('show', {
-          path: ':user_id'
-      });
+    this.route('show', {
+      path: ':user_id'
+    });
   });
   this.route('home');
   this.route('accountandprofile');
@@ -49,30 +43,27 @@ Router.map(function() {
 
 
   this.route('auth', function() {
-      this.route('login');
-      this.route('register');
-      this.route('forgot-password');
+    this.route('login');
+    this.route('register');
+    this.route('forgot-password');
   });
 
   this.route('photo', { path: '/photo/:photo_id' }, function() {
-      this.route('comment', { path: '/comment/:comment_id' });
-  });
-
-  this.route('spacesmy', function() {
-    this.route('joined');
-    this.route('owned');
+    this.route('comment', { path: '/comment/:comment_id' });
   });
 
   this.route('spaces', function() {
     this.route('new');
     this.route('space', {path: ':space_id'}, function() {
-        this.route('settings');
-        this.route('members');
-        this.route('billing');
-        this.route('membership-requests');
-        this.route('apps');
-        this.route('websites');
+      this.route('settings');
+      this.route('members');
+      this.route('billing');
+      this.route('membership-requests');
+      this.route('apps');
+      this.route('websites');
     });
+    this.route('joined');
+    this.route('owned');
   });
   this.route('context-membership');
   this.route('context-membership-request');
@@ -81,38 +72,65 @@ Router.map(function() {
     this.route('new');
 
     this.route('edit', {
-        path: ':host_id/edit'
+      path: ':host_id/edit'
     });
 
     this.route('show', {
-        path: ':host_id'
+      path: ':host_id'
     });
   });
   this.route('space-apps', function() {
-      this.route('new');
+    this.route('new');
 
-      this.route('edit', {
-        path: ':space-app_id/edit'
-      });
+    this.route('edit', {
+      path: ':space-app_id/edit'
+    });
 
-      this.route('show', {
-        path: ':space-app_id'
-      });
+    this.route('show', {
+      path: ':space-app_id'
+    });
   });
   this.route('websites', function() {
-      this.route('new');
+    this.route('new');
 
-      this.route('edit', {
-        path: ':website_id/edit'
-      });
+    this.route('edit', {
+      path: ':website_id/edit'
+    });
 
-      this.route('show', {
-        path: ':website_id'
-      });
+    this.route('show', {
+      path: ':website_id'
+    });
   });
-  this.route('help');
-  this.route('notes');
-  this.route('tasks');
+  this.route('issues');
+  this.route('issues', function() {
+    this.route('new');
+    this.route('created');
+    this.route('mentioned');
+    this.route('assigned');
+      this.route('issue', function(){
+        this.route('comments');
+      });
+
+    this.route('edit', {
+      path: ':issue_id/edit'
+    });
+
+    this.route('show', {
+      path: ':issue_id'
+    });
+  });
+  this.route('issue-comment');
+  this.route('issue-comments', function() {
+    this.route('new');
+
+    this.route('edit', {
+      path: ':issue-comment_id/edit'
+    });
+
+    this.route('show', {
+      path: ':issue-comment_id'
+    });
+  });
 });
 
 export default Router;
