@@ -7,20 +7,32 @@ const { service } = Ember.inject;
 
 export default Ember.Route.extend(ApplicationRouteMixin, {
   sessionAccount: service('session-account'),
-  modelTitleProperty: 'name',
+  breadCrumbModelTitleProperty: 'name',
+  // add calculated property dynamically based on "breadCrumbModelTitleProperty"
+  // to determine breadcrumb name
+  afterModel(model, transition) {
+    this._super(...arguments);
 
-  breadCrumb: Ember.computed(`controller.model.${this.modelTitleProperty}`, {
-    get() {
+    let breadCrumbSet = false;
 
-      let breadCrumb;
-      const modelName = this.get(`controller.model.${this.modelTitleProperty}`) || false;
-      if(modelName){
-        breadCrumb = {};
-        breadCrumb.title = modelName;
-      }
-      return breadCrumb;
+    let modelTitleProperty = model ?  this.get('modelTitleProperty') : false;
+    console.log("breadCrumbModelTitleProperty: " + modelTitleProperty);
+    if(modelTitleProperty){
+      modelTitleProperty = `controller.model.${modelTitleProperty}`;
+      console.log("breadCrumbModelTitleProperty: " + modelTitleProperty);
+
+      Ember.defineProperty(this, 'breadCrumb', Ember.computed('breadCrumbTitle', modelTitleProperty, function(){
+
+        let breadCrumb;
+        const modelName = this.get(modelTitleProperty) || false;
+        if(modelName){
+          breadCrumb = {};
+          breadCrumb.title = modelName;
+        }
+        return breadCrumb;
+      }));
     }
-  }),
+  },
   beforeModel(transition) {
     //this._super(transition, queryParams);
     // widget mode?

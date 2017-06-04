@@ -7,6 +7,10 @@ $warn: "red";
 @import "color-palette";
 @import 'ember-paper';
 @import "ember-paper-tabs";
+@import "ember-paper-expansion-panel";
+//@import 'bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap';
+//@import 'ember-cli-admin';
+
 
 
 
@@ -57,6 +61,7 @@ h1, h2, h3, h4, h5, h6, header {
 .md-menu-toolbar-top > .md-toolbar-tools,
 .md-menu-toolbar-user > .md-toolbar-tools {
   padding-left: 0;
+  padding-right: 0;
 }
 
 md-sidenav > md-card {

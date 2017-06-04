@@ -55,7 +55,7 @@
      {{#paper-list}}
 
        {{#paper-item  onClick=(action (transition-to "friends"))}}
-        {{paper-icon "person"}}
+        {{paper-icon "people-outline"}}
         <p>Friends</p>
        {{/paper-item}}
        {{#paper-item  onClick=(action (transition-to "configureapps"))}}
@@ -63,7 +63,7 @@
         <p>Apps</p>
        {{/paper-item}}
        {{#paper-item  onClick=(action (transition-to "spacesmy"))}}
-        {{paper-icon "work"}}
+        {{paper-icon "domain"}}
         <p>Spaces</p>
        {{/paper-item}}
        {{#paper-item  onClick=(action (transition-to "websites"))}}
@@ -92,6 +92,10 @@
         <p>Help &amp; Support</p>
        {{/paper-item}}
        <!--
+       {{#paper-item  onClick=(action (transition-to "issues.issue.comments"))}}
+        {{paper-icon "folder"}}
+        <p>issue</p>
+       {{/paper-item}}
        {{#paper-subheader}}3Administration{{/paper-subheader}}
 
        {{#paper-item  onClick=(action (transition-to "systemsettings"))}}
@@ -114,12 +118,12 @@
 
   <div class="layout-row flex">
     <div class="layout-column flex">
-      {{#paper-toolbar class="hide-sm md-menu-toolbar" as |toolbar|}}
+      {{#paper-toolbar class="flex-initial hide-sm md-menu-toolbar" as |toolbar|}}
         {{#toolbar.tools}}
           {{bread-crumbs tagName="ol"  linkable=true}}
         {{/toolbar.tools}}
       {{/paper-toolbar}}
-      {{#paper-content class=" md-padding md-scroll-y main-content"}}
+      {{#paper-content class="flex md-padding md-scroll-y main-content"}}
         {{outlet}}
       {{/paper-content}}
     </div>
