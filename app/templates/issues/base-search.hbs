@@ -1,11 +1,11 @@
-<!-- app/templates/spaces/index.hbs -->
+
 <div class="layout-fill layout-row layout-align-center-start ">
 
 {{#paper-card as |card|}}
   {{#paper-toolbar class="md-menu-toolbar" as |toolbar|}}
     {{#toolbar.tools class="layout-row"}}
       <span class="flex"></span>
-      <h2 class="">My Spaces</h2>
+      <h2 class="">{{breadCrumb.title}} Issues</h2>
       <span class="flex"></span>
     {{/toolbar.tools}}
   {{/paper-toolbar}}
@@ -13,7 +13,7 @@
     {{#if model.length}}
       {{#paper-list}}
         {{#each model as |item|}}
-          {{#paper-item class="md-3-line md-long-text" borderBottom=true onClick=(action (transition-to "spaces.space" item)) as |controls| }}
+          {{#paper-item class="md-3-line md-long-text" borderBottom=true onClick=(action (transition-to "issues.issue" item)) as |controls| }}
 
             {{#if item.avatarUrl}}
               <img src={{item.avatarUrl}} alt={{item.name}} class="md-avatar">

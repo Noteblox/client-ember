@@ -1,5 +1,3 @@
-/*jshint node:true*/
-/* global require, module */
 /* eslint-env node */
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
@@ -28,6 +26,7 @@ module.exports = function(defaults) {
   // import annotator
 //  app.import('vendor/annotator.document.min.js');
   app.import('vendor/annotator.css');
+  //app.import('node_modules/moment/moment.js');
 
   return app.toTree();
 };

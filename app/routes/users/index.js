@@ -8,7 +8,14 @@ export default BaseAuthenticated.extend( {
       }
     }
   },
-  model: function() {
-    return this.store.findAll('user');
-  }
+  model: function(params) {
+    console.log("model, params: ");
+    console.log(params);
+    return this.store.query('user', {
+      page: {
+        number: params.number,
+        size: params.size
+      }
+    }).toArray();
+  },
 });

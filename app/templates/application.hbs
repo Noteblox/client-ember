@@ -74,9 +74,9 @@
         {{paper-icon "content-paste"}}
         <p>Notes</p>
        {{/paper-item}}
-       {{#paper-item  onClick=(action (transition-to "tasks"))}}
+       {{#paper-item  onClick=(action (transition-to "issues"))}}
         {{paper-icon "assignment"}}
-        <p>Tasks</p>
+        <p>Issues</p>
        {{/paper-item}}
        {{#paper-item  onClick=(action (transition-to "statistics"))}}
         {{paper-icon "timeline"}}
@@ -91,6 +91,7 @@
         {{paper-icon "help-outline"}}
         <p>Help &amp; Support</p>
        {{/paper-item}}
+
        <!--
        {{#paper-item  onClick=(action (transition-to "issues.issue.comments"))}}
         {{paper-icon "folder"}}

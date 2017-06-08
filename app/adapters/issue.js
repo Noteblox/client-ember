@@ -5,10 +5,4 @@ import {singularize, pluralize} from 'ember-inflector';
 
 export default ApplicationAdapter.extend({
 
-  pathForType: function(type) {
-    console.log("pathForType,ISSUE/NOTE type: " + type);
-    //const newType = Ember.String.camelize(type);
-    console.log("pathForType,ISSUE/NOTE type: " + type);
-    return pluralize('note');
-  },
 });

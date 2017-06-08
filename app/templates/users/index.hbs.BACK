@@ -1,0 +1,56 @@
+<!-- app/templates/users/index.hbs -->
+<div class="layout-fill layout-row layout-align-center-start ">
+{{#paper-card as |card|}}
+  {{#paper-toolbar class="md-menu-toolbar" as |toolbar|}}
+    {{#toolbar.tools class="layout-row"}}
+      <span class="flex"></span>
+      <h2>Friends</h2>
+      <span class="flex"></span>
+    {{/toolbar.tools}}
+  {{/paper-toolbar}}
+
+    {{#if model.length}}
+      {{#paper-list}}
+       {{#each model as |item|}}
+         {{#paper-item class="md-2-line" as |controls| }}
+           {{#if item.avatarUrl}}
+             <img src={{item.avatarUrl}} alt={{item.name}} class="md-avatar">
+           {{else}}
+             {{ember-initials class="md-avatar"
+                 size=50
+                 name=item.name
+                 seedText=item.name
+                 defaultName='?'
+                 textColor="white"
+                 fontSize=55
+                 fontWeight=100
+                 fontFamily="Helvetica Neue Light, Arial, sans-serif"
+             }}
+           {{/if}}
+           <div class="md-list-item-text">
+             <h3>{{item.firstName}} {{item.lastName}} <span class="username">({{item.username}})</span></h3>
+             <p>Member joined {{moment-to-now item.createdDate}} </p>
+           </div>
+         {{/paper-item}}
+       {{/each}}
+      {{/paper-list}}
+      {{#if model.meta.documentLinks}}
+        {{#card.actions class="layout-row"}}
+          {{#each-in model.meta.documentLinks as |key value|}}
+            {{#paper-button href=value.href}}{{key}}{{/paper-button}}
+          {{/each-in}}
+        {{/card.actions}}
+      {{/if}}
+
+    {{else}}
+
+      {{#card.content}}
+        <p>
+         No entries found.
+        </p>
+      {{/card.content}}
+
+    {{/if}}
+
+{{/paper-card}}
+</div>

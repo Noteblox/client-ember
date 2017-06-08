@@ -8,7 +8,9 @@ export default Ember.Route.extend({
       }
     }
   },
-  model: function() {
-    return this.store.findAll('issue');
+  beforeModel: function(model, transition) {
+
+    this.transitionTo('issues.assigned');
+
   }
 });

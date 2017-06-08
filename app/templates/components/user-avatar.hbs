@@ -1,0 +1,14 @@
+{{#if row.avatarUrl}}
+ <img src={{row.avatarUrl}} alt={{row.name}} class="avatar" >
+{{else}}
+ {{ember-initials class="avatar"
+     size=50
+     name=row.name
+     seedText=row.name
+     defaultName='?'
+     textColor="white"
+     fontSize=55
+     fontWeight=100
+     fontFamily="Helvetica Neue Light, Arial, sans-serif"
+ }}
+{{/if}}

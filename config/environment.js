@@ -1,6 +1,6 @@
-/* jshint node: true */
+/* eslint-env node */
 
-module.exports = function (environment) {
+module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'noteblox-client-ember',
     environment: environment,
@@ -50,7 +50,7 @@ module.exports = function (environment) {
       // 'all' - all years, all timezones
       // '2010-2020' - 2010-2020, all timezones
       // 'none' - no data, just timezone API
-      includeTimezone: 'all'
+      includeTimezone: 'none'
     }
   };
 
