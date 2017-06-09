@@ -1,10 +1,10 @@
-{{#if row.avatarUrl}}
- <img src={{row.avatarUrl}} alt={{row.name}} class="avatar" >
+{{#if avatarUrl}}
+ <img src={{avatarUrl}} alt={{avatarName}} class="avatar" >
 {{else}}
  {{ember-initials class="avatar"
      size=50
-     name=row.name
-     seedText=row.name
+     name=avatarName
+     seedText=avatarName
      defaultName='?'
      textColor="white"
      fontSize=55

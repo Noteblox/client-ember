@@ -16,7 +16,14 @@ const {
  */
 
 const Avatar = Component.extend({
-
+  name: null,
+  image: null,
+  avatarName: computed('row', 'name', function() {
+    return this.get('name') || this.get('row.name') || 'Unknown';
+  }),
+  avatarUrl: computed('row', 'image', function() {
+    return this.get('image') || this.get('row.avatarUrl') || null;
+  }),
   /**
    * @property value
    * @type {Mixed}

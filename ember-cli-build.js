@@ -5,6 +5,10 @@ module.exports = function(defaults) {
   var app = new EmberApp(defaults, {
     // Add options here
 
+    // enable ES7 Decorators
+    babel: {
+      optional: [ 'es7.decorators' ]
+    },
     fingerprint: {
         enabled: false
     }

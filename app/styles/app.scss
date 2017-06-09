@@ -13,7 +13,7 @@ $warn: "red";
 
 $border-common-collor: rgb(232, 232, 232);
 $border-common: 1px solid $border-common-collor;
-
+$primary-color: rgb(63, 81, 181); /*equal to "indigo"*/
 
 
 html {
@@ -45,6 +45,7 @@ body {
 
 .logo {
   color: #555;
+  background-color: #f8f8f8;
 }
 
 h1, h2, h3, h4, h5, h6, header {
@@ -53,10 +54,10 @@ h1, h2, h3, h4, h5, h6, header {
 
 .box-shadow-inner {
   /*
-  -webkit-box-shadow: inset 3px 3px 3px 3px rgba(0, 0, 0, 0.16), 3px 3px 3px 3px rgba(0, 0, 0, 0.23);
-  -moz-box-shadow: inset 3px 3px 3px 3px rgba(0, 0, 0, 0.16), 3px 3px 3px 3px rgba(0, 0, 0, 0.23);
-  box-shadow: inset 3px 3px 3px 3px rgba(0, 0, 0, 0.16), 3px 3px 3px 3px rgba(0, 0, 0, 0.23);
-*/
+  -webkit-box-shadow: inset 10px 10px 74px 47px rgba(0,0,0,0.14);
+  -moz-box-shadow: inset 10px 10px 74px 47px rgba(0,0,0,0.14);
+  box-shadow: inset 10px 10px 74px 47px rgba(0,0,0,0.14);
+  */
 }
 
 .site-sidenav > md-sidenav {
@@ -73,14 +74,14 @@ h1, h2, h3, h4, h5, h6, header {
   padding-right: 0;
 }
 
+md-content.main-content.md-default-theme {
+   background-color: #f8f8f8;
+ }
+
 md-sidenav > md-card {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-
-md-card {
-  box-shadow: none;
 }
 
 .username {
@@ -90,6 +91,47 @@ md-card {
   text-transform: lowercase;
   color: #888;
 }
+
+md-card {
+}
+
+/* Flexbox cards*/
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.cards  > md-card {
+  flex: 1 0 500px;
+  box-sizing: border-box;
+  margin: 1rem .25em;
+}
+
+@media screen and (min-width: 40em) {
+  .cards  > md-card  {
+    max-width: calc(50% -  1em);
+  }
+}
+
+@media screen and (min-width: 60em) {
+  .cards  > md-card  {
+    max-width: calc(25% - 1em);
+  }
+}
+
+.centered {
+  margin: 0 auto;
+  padding: 0 1em;
+}
+
+@media screen and (min-width: 52em) {
+  .centered {
+    max-width: 52em;
+  }
+}
+
+
 /* ------------------------- breadcrumb ------------------------- */
 .breadcrumb {
   margin: 0;
@@ -161,7 +203,6 @@ md-card {
 }
 */
 /* light table*/
-$loader-color: $primary;
 
 .spinner {
   margin: 15px auto;
@@ -172,7 +213,7 @@ $loader-color: $primary;
 }
 
 .spinner > div {
-  background-color: $loader-color;
+  background-color: $primary-color;
   height: 100%;
   width: 4px;
   display: inline-block;

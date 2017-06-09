@@ -92,6 +92,10 @@
         <p>Help &amp; Support</p>
        {{/paper-item}}
 
+       {{#paper-item  onClick=(action (transition-to "users"))}}
+        {{paper-icon "people"}}
+        <p>User Accounts</p>
+       {{/paper-item}}
        <!--
        {{#paper-item  onClick=(action (transition-to "issues.issue.comments"))}}
         {{paper-icon "folder"}}
