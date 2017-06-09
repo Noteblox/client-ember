@@ -6,27 +6,26 @@ const {
 } = Ember;
 
 
-const BaseContext = DS.Model.extend({
+const BaseCase = DS.Model.extend({
 
   name: DS.attr('string'),
   title: DS.attr('string'),
-  description: DS.attr('string')
+  detail: DS.attr('string')
 
 });
 
 
-BaseContext.reopenClass({
+BaseCase.reopenClass({
   columns: computed(function() {
     return [{
       label: '',
-      avatarUrlPath: 'createdBy.avatarUrl',
-      avatarNamePath: 'createdBy.username',
+      valuePath: 'avatarUrl',
       width: '60px',
       sortable: false,
       cellComponent: 'user-avatar'
     }, {
-      label: 'Author',
-      cellComponent: 'cases/light-cell'
+      label: 'Name',
+      valuePath: 'name',
     }, {
       label: 'Title',
       valuePath: 'title',
@@ -34,4 +33,4 @@ BaseContext.reopenClass({
   })
 });
 
-export default BaseContext;
+export default BaseCase;

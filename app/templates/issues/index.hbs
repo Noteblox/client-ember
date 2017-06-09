@@ -1,82 +1,18 @@
-
+<!-- app/templates/issues/index.hbs -->
 <div class="layout-fill layout-row layout-align-center-start ">
-  <p>
-    {{link-to "New Issue" "issues.new" }}
-  </p>
-{{#paper-card as |card|}}
-  {{#paper-toolbar class="md-menu-toolbar" as |toolbar|}}
-    {{#toolbar.tools class="layout-row"}}
-      <span class="flex"></span>
-      <h2 class="">Issues list</h2>
-      <span class="flex"></span>
-    {{/toolbar.tools}}
-  {{/paper-toolbar}}
-
-    {{#if model.length}}
-      {{#paper-list}}
-        {{#each model as |issue|}}
-          {{#paper-item class="md-3-line md-long-text" borderBottom=true onClick=(action (transition-to "issues.issue" issue)) as |controls| }}
-
-            {{#if issue.avatarUrl}}
-              <img src={{issue.avatarUrl}} alt={{issue.username}} class="md-avatar">
-            {{else}}
-
-             {{ember-initials class="md-avatar"
-                 size=50
-                 name=item.title
-                 seedText=item.title
-                 defaultName='?'
-                 textColor="white"
-                 fontSize=55
-                 fontWeight=100
-                 fontFamily="Helvetica Neue Light, Arial, sans-serif"
-             }}
-            {{/if}}
-            <div class="md-list-item-text">
-             <h3>{{issue.title}} <span class="username">({{issue.name}})</span></h3>
-             <p>Created {{moment-to-now item.createdDate}} </p>
-             <p>{{issue.description}} </p>
-             <p>{{issue.visibility}} </p>
-            </div>
-           <div class="flex">
-            &nbsp;
-           </div>
-            {{paper-icon "keyboard-arrow-right"}}
-          {{/paper-item}}
-        {{/each}}
-      {{/paper-list}}
-
-      <tr>
-      <td>
-        {{link-to "Edit" "issues.edit" issue}}
-      </td>
-      <td>
-        {{link-to "Show" "issues.show" issue}}
-      </td>
-      <td>
-        <a href="#" {{action "remove" issue}}>Remove</a>
-      </td>
-      </tr>
-      {{#if model.meta.documentLinks}}
-        {{#card.actions class="layout-row"}}
-          {{#each-in model.meta.documentLinks as |key value|}}
-            {{#paper-button href=value.href}}{{key}}{{/paper-button}}
-          {{/each-in}}
-        {{/card.actions}}
-      {{/if}}
-
-    {{else}}
-
-      {{#card.content}}
-        <p>
-         No Issues found
-        </p>
-      {{/card.content}}
-
-    {{/if}}
-
-{{/paper-card}}
-
-
-
+  {{#paper-card as |card|}}
+    {{#paper-toolbar class="md-menu-toolbar" as |toolbar|}}
+      {{#toolbar.tools class="layout-row"}}
+        <span class="flex"></span>
+        <h2>Issues</h2>
+        <span class="flex"></span>
+      {{/toolbar.tools}}
+    {{/paper-toolbar}}
+    <div class="layout-fill layout-row layout-align-center-start ">
+    {{paginated-table model=model modelName='issue' }}
+    </div>
+  {{/paper-card}}
 </div>
+
+
+TEST

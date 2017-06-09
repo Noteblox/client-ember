@@ -18,11 +18,15 @@ const {
 const Avatar = Component.extend({
   name: null,
   image: null,
+
+  avatarNamePath: 'name',
+  avatarUrlPath: 'avatarUrl',
+
   avatarName: computed('row', 'name', function() {
-    return this.get('name') || this.get('row.name') || 'Unknown';
+    return this.get('name') || this.get(`row.${this.avatarNamePath}`) || 'Unknown';
   }),
   avatarUrl: computed('row', 'image', function() {
-    return this.get('image') || this.get('row.avatarUrl') || null;
+    return this.get('image') || this.get(`row.${this.avatarUrlPath}`) || null;
   }),
   /**
    * @property value

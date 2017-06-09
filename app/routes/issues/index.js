@@ -1,16 +1,14 @@
-import Ember from 'ember';
+import BaseAuthenticated  from '../base-authenticated';
 
-export default Ember.Route.extend({
-  actions: {
-    remove: function(model) {
-      if(confirm('Are you sure?')) {
-        model.destroyRecord();
+export default BaseAuthenticated.extend( {
+  model: function(params) {
+    console.log("model, params: ");
+    console.log(params);
+    return this.store.query('issue', {
+      page: {
+        number: params.number,
+        size: params.size
       }
-    }
+    }).toArray();
   },
-  beforeModel: function(model, transition) {
-
-    this.transitionTo('issues.assigned');
-
-  }
 });

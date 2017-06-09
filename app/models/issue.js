@@ -1,8 +1,6 @@
 import DS from 'ember-data';
+import BaseCase from './base-case';
 
-export default DS.Model.extend({
-  name: DS.attr('string'),
-  title: DS.attr('string'),
-  description: DS.attr('text'),
+export default BaseCase.extend({
   visibility: DS.attr('string')
 });

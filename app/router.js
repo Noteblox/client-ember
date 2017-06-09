@@ -103,21 +103,18 @@ Router.map(function () {
     });
 
     this.route('issues', function () {
-        this.route('new');
-        this.route('created');
-        this.route('mentioned');
-        this.route('assigned');
-        this.route('issue', function () {
-            this.route('comments');
-        });
+      this.route('new');
+      this.route('issue', function () {
+          this.route('comments');
+      });
 
-        this.route('edit', {
-            path: ':issue_id/edit'
-        });
+      this.route('edit', {
+          path: ':issue_id/edit'
+      });
 
-        this.route('show', {
-            path: ':issue_id'
-        });
+      this.route('show', {
+          path: ':issue_id'
+      });
     });
     this.route('issue-comments', function () {
         this.route('new');
