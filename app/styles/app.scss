@@ -119,6 +119,7 @@ md-card {
   .cards  > md-card  {
     max-width: calc(25% - 1em);
   }
+
 }
 
 .centered {
@@ -205,6 +206,10 @@ md-card {
 */
 /* light table*/
 
+/* custom */
+.ember-light-table td h4{
+  margin: 0px;
+}
 .spinner {
   margin: 15px auto;
   width: 50px;

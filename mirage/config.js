@@ -1,4 +1,9 @@
 export default function() {
+this.get('/space-apps');
+this.get('/space-apps/:id');
+this.post('/space-apps');
+this.del('/space-apps/:id');
+this.patch('/space-apps/:id');
 
   // These comments are here to help you get started. Feel free to delete them.
 

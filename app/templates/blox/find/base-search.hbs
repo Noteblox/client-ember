@@ -1,0 +1,40 @@
+<!-- app/templates/bloxmy/index.hbs -->
+
+
+    {{#if model.length}}
+
+        {{#each model as |item|}}
+
+          {{#paper-card as |card|}}
+            {{#card.header  as |header|}}
+              {{#header.avatar}}
+                {{user-avatar name=item.name image=item.avatarUrl}}
+              {{/header.avatar}}
+              {{#header.text as |text|}}
+                {{#text.title}}{{item.title}}{{/text.title}}
+                {{#text.subhead}}{{item.name}} created {{moment-to-now item.createdDate}}{{/text.subhead}}
+              {{/header.text}}
+            {{/card.header}}
+            {{#card.content class="layout-row  layout-xs-column layout-align-space-between"}}
+              <div>
+                <p>{{item.description}}</p>
+              </div>
+              {{!card.media size="sm" src=item.bannerUrl alt="preview"}}
+            {{/card.content}}
+            {{#card.actions class="layout-row  layout-xs-column layout-align-center-center"}}
+              {{#paper-button onClick=(action (transition-to "blox.block.settings" item))}}Activity{{/paper-button}}
+              {{#paper-button onClick=(action (transition-to "blox.block.apps" item))}}Apps{{/paper-button}}
+              {{#paper-button onClick=(action (transition-to "blox.block.members" item))}}Members{{/paper-button}}
+              {{#paper-button onClick=(action (transition-to "blox.block.settings" item))}}Settings{{/paper-button}}
+            {{/card.actions}}
+          {{/paper-card}}
+
+      {{/each}}
+    {{else}}
+
+        <p>
+         This blox found
+        </p>
+
+    {{/if}}
+

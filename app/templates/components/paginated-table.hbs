@@ -9,6 +9,7 @@
 
   {{#t.body
     canSelect=false
+    onRowClick=(route-action "showRow" item.id)
     as |body|
   }}
     {{#if isLoading}}

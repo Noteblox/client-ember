@@ -50,7 +50,9 @@ test('create a new space-app', function(assert) {
     assert.equal(currentPath(), 'space-apps.new');
 
     fillIn('label:contains(Name) input', 'MyString');
+    fillIn('label:contains(Title) input', 'MyString');
     fillIn('label:contains(Description) input', 'MyString');
+    fillIn('label:contains(Visibility) input', 'MyString');
 
     click('input:submit');
   });
@@ -70,7 +72,9 @@ test('update an existing space-app', function(assert) {
     assert.equal(currentPath(), 'space-apps.edit');
 
     fillIn('label:contains(Name) input', 'MyString');
+    fillIn('label:contains(Title) input', 'MyString');
     fillIn('label:contains(Description) input', 'MyString');
+    fillIn('label:contains(Visibility) input', 'MyString');
 
     click('input:submit');
   });
@@ -90,7 +94,9 @@ test('show an existing space-app', function(assert) {
     assert.equal(currentPath(), 'space-apps.show');
 
     assert.equal(find('p strong:contains(Name:)').next().text(), 'MyString');
+    assert.equal(find('p strong:contains(Title:)').next().text(), 'MyString');
     assert.equal(find('p strong:contains(Description:)').next().text(), 'MyString');
+    assert.equal(find('p strong:contains(Visibility:)').next().text(), 'MyString');
   });
 });
 

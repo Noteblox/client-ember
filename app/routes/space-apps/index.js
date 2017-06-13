@@ -1,14 +1,10 @@
-import Ember from 'ember';
+import BaseSearch  from '../base-search';
 
-export default Ember.Route.extend({
-  actions: {
-    remove: function(model) {
-      if(confirm('Are you sure?')) {
-        model.destroyRecord();
-      }
-    }
-  },
-  model: function() {
-    return this.store.findAll('space-app');
-  }
+const Route = BaseSearch.extend( {
+  modelTypeName: 'space-app',
+  showRowRoute: 'space-apps.app',
 });
+
+
+
+export default Route;

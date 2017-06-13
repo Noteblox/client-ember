@@ -15,7 +15,7 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
 
     let breadCrumbSet = false;
 
-    let modelTitleProperty = model ?  this.get('modelTitleProperty') : false;
+    let modelTitleProperty = model ?  this.get('breadCrumbModelTitleProperty') : false;
     console.log("breadCrumbModelTitleProperty: " + modelTitleProperty);
     if(modelTitleProperty){
       modelTitleProperty = `controller.model.${modelTitleProperty}`;

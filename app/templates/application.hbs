@@ -58,17 +58,13 @@
         {{paper-icon "people-outline"}}
         <p>Friends</p>
        {{/paper-item}}
-       {{#paper-item  onClick=(action (transition-to "configureapps"))}}
+       {{#paper-item  onClick=(action (transition-to "space-apps"))}}
         {{paper-icon "apps"}}
         <p>Apps</p>
        {{/paper-item}}
-       {{#paper-item  onClick=(action (transition-to "spacesmy"))}}
+       {{#paper-item  onClick=(action (transition-to "blox"))}}
         {{paper-icon "domain"}}
-        <p>Spaces</p>
-       {{/paper-item}}
-       {{#paper-item  onClick=(action (transition-to "websites"))}}
-        {{paper-icon "public"}}
-        <p>Websites</p>
+        <p>Blox</p>
        {{/paper-item}}
        {{#paper-item  onClick=(action (transition-to "notes"))}}
         {{paper-icon "content-paste"}}

@@ -1,0 +1,9 @@
+<h4 class="no">{{row.title}}</h4>
+<div>
+{{paper-icon "visibility"}}
+{{row.visibility}}
+
+{{#if row.space}}
+ | {{paper-icon "domain"}} {{row.space.title}},
+{{/if}}
+</div>

@@ -1,48 +1,16 @@
-<h1>Space-apps list</h1>
+<!-- app/templates/space-apps/index.hbs -->
 
-<p>
-  {{link-to "New Space-app" "space-apps.new" }}
-</p>
-
-{{#if model.length}}
-  <table>
-    <thead>
-      <tr>
-        <th>
-          Name
-        </th>
-        <th>
-          Description
-        </th>
-        <th colspan="3">
-          Actions
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      {{#each model as |space-app|}}
-        <tr>
-          <td>
-            {{space-app.name}}
-          </td>
-          <td>
-            {{space-app.description}}
-          </td>
-          <td>
-            {{link-to "Edit" "space-apps.edit" space-app}}
-          </td>
-          <td>
-            {{link-to "Show" "space-apps.show" space-app}}
-          </td>
-          <td>
-            <a href="#" {{action "remove" space-app}}>Remove</a>
-          </td>
-        </tr>
-      {{/each}}
-    </tbody>
-  </table>
-{{else}}
-  <p id="blankslate">
-    No Space-apps found
-  </p>
-{{/if}}
+<div class="layout-fill layout-row layout-align-center-start ">
+  {{#paper-card as |card|}}
+    {{#paper-toolbar class="md-menu-toolbar" as |toolbar|}}
+      {{#toolbar.tools class="layout-row"}}
+        <span class="flex"></span>
+        <h2>Apps</h2>
+        <span class="flex"></span>
+      {{/toolbar.tools}}
+    {{/paper-toolbar}}
+    <div class="layout-fill layout-row layout-align-center-start ">
+    {{paginated-table model=model modelName='space-app' }}
+    </div>
+  {{/paper-card}}
+</div>

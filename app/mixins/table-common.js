@@ -108,7 +108,6 @@ export default Ember.Mixin.create({
         this.get('fetchRecords').perform();
       }
     },
-
     onColumnClick(column) {
       if (column.sorted) {
         this.setProperties({

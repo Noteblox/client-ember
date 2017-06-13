@@ -60,25 +60,24 @@ Router.map(function () {
         this.route('comment', {path: '/comment/:comment_id'});
     });
 
-    this.route('spacesmy', function () {
+
+    this.route('blox', function () {
+      this.route('new');
+      this.route('find', function () {
         this.route('joined');
         this.route('owned');
-    });
+      });
+      this.route('block', {path: ':block_id'}, function () {
+        this.route('settings');
+        this.route('members');
+        this.route('billing');
+        this.route('membership-requests');
+        this.route('apps');
 
-    this.route('spaces', function () {
-        this.route('new');
-        this.route('space', {path: ':space_id'}, function () {
-            this.route('settings');
-            this.route('members');
-            this.route('billing');
-            this.route('membership-requests');
-            this.route('apps');
-            this.route('websites');
-        });
+      });
     });
     this.route('context-membership');
     this.route('context-membership-request');
-    this.route('website');
     this.route('hosts', function () {
         this.route('new');
 
@@ -100,6 +99,13 @@ Router.map(function () {
         this.route('show', {
             path: ':space-app_id'
         });
+
+
+      this.route('app', {path: ':app_id'}, function () {
+        this.route('settings');
+        this.route('members');
+        this.route('membership-requests');
+      });
     });
 
     this.route('issues', function () {
@@ -125,17 +131,6 @@ Router.map(function () {
 
         this.route('show', {
             path: ':issue-comment_id'
-        });
-    });
-    this.route('websites', function () {
-        this.route('new');
-
-        this.route('edit', {
-            path: ':website_id/edit'
-        });
-
-        this.route('show', {
-            path: ':website_id'
         });
     });
     this.route('help');
