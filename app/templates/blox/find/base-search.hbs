@@ -11,8 +11,17 @@
                 {{user-avatar name=item.name image=item.avatarUrl}}
               {{/header.avatar}}
               {{#header.text as |text|}}
-                {{#text.title}}{{item.title}}{{/text.title}}
-                {{#text.subhead}}{{item.name}} created {{moment-to-now item.createdDate}}{{/text.subhead}}
+                {{#text.subhead}}
+                  <span class="username">{{item.name}}</span>
+                  {{#if item.space}}
+                    {{paper-icon "domain"}} {{item.space.title}},
+                  {{else}}
+                    {{paper-icon "account"}} {{item.owner.name}}
+                  {{/if}}
+                {{/text.subhead}}
+                {{#text.title}}
+                  <h4>{{item.title}}</h4>
+                {{/text.title}}
               {{/header.text}}
             {{/card.header}}
             {{#card.content class="layout-row  layout-xs-column layout-align-space-between"}}
