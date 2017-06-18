@@ -1,0 +1,16 @@
+<!-- app/templates/blox/block/activity.hbs -->
+
+<div class="layout-fill layout-row layout-align-center-start ">
+  {{#paper-card as |card|}}
+    {{#paper-toolbar class="md-menu-toolbar" as |toolbar|}}
+      {{#toolbar.tools class="layout-row"}}
+        <span class="flex"></span>
+        <h2>Activity</h2>
+        <span class="flex"></span>
+      {{/toolbar.tools}}
+    {{/paper-toolbar}}
+    <div class="layout-fill layout-row layout-align-center-start ">
+    {{paginated-table model=model modelName='activity-log' sort="createdDate" }}
+    </div>
+  {{/paper-card}}
+</div>

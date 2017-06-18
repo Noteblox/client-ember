@@ -17,6 +17,7 @@ const BaseContext = DS.Model.extend({
   createdDate: DS.attr('utc'),
   owner: DS.belongsTo('user'),
   space: DS.attr(),
+  membershipsCount: DS.attr(),
   memberships: DS.hasMany('context-membership'),
   membershipRequests: DS.hasMany('context-membership-request')
 
@@ -34,7 +35,8 @@ BaseContext.reopenClass({
       cellComponent: 'user-avatar'
     }, {
       label: 'App',
-      cellComponent: 'space-apps/light-cell'
+      cellComponent: 'space-apps/light-cell',
+      valuePath: 'title',
     }, {
       label: 'Title',
       valuePath: 'title',

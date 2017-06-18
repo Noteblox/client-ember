@@ -1,0 +1,15 @@
+<h4 class="no">{{row.title}}</h4>
+<div class="subhead">
+
+<span class="username">{{row.name}}</span>
+
+{{row.subject.name}}
+
+{{row.predicate}}
+
+{{#if row.object.name}}
+  {{paper-icon "domain"}} {{row.object.name}},
+{{else}}
+  {{paper-icon "account"}} {{item.context.name}}
+{{/if}}
+</div>

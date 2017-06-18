@@ -31,7 +31,7 @@ export default Ember.Mixin.create({
   /**
    * The property name to sort by
    */
-  sort: 'name',
+  sort: 'id',
   /**
    * Maintains loading state
    */

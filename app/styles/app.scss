@@ -21,7 +21,7 @@ html {
   font-family: 'Lato', sans-serif;
 }
 
-td > .avatar {
+img.avatar {
   width: 35px;
   height: 35px;
   border-radius: 50%;
@@ -52,6 +52,33 @@ body {
 h1, h2, h3, h4, h5, h6, header {
   color: #888;
 }
+.md-title > h1,
+.md-title > h2,
+.md-title > h3,
+.md-title > h4,
+.md-title > h5,
+.lt-row td h1,
+.lt-row td h2,
+.lt-row td h3,
+.lt-row td h4,
+.lt-row td h5{
+  font-size: larger;
+  font-weight: normal;
+  color: rgba(0, 0, 0, 0.87);
+  margin: 0px;
+}
+
+.md-subhead,
+.lt-row td .subhead{
+  font-size: smaller;
+  font-weight: normal;
+  color: #888;
+}
+.lt-cell img.avatar {
+  display:block;
+}
+
+
 
 .box-shadow-inner {
   /*
@@ -63,6 +90,9 @@ h1, h2, h3, h4, h5, h6, header {
 
 .site-sidenav > md-sidenav {
   border-right: 1px solid rgb(232, 232, 232);
+}
+md-icon.md-default-theme, md-icon {
+  color: inherit;
 }
 
 .md-menu-toolbar, .md-menu-toolbar-top{
@@ -206,10 +236,6 @@ md-card {
 */
 /* light table*/
 
-/* custom */
-.ember-light-table td h4{
-  margin: 0px;
-}
 .spinner {
   margin: 15px auto;
   width: 50px;
@@ -328,6 +354,7 @@ $border-color: #DADADA;
 
   .lt-row {
     height: 50px;
+    background-color: #FFF;
 
     &.is-selected {
       background-color: #DEDEDE;

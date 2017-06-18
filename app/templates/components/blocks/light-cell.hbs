@@ -1,0 +1,11 @@
+<h4 class="no">{{row.title}}</h4>
+<div class="subhead">
+
+<span class="username">{{row.name}}</span>
+
+{{#if row.space}}
+  {{paper-icon "domain"}} {{row.space.title}},
+{{else}}
+  {{paper-icon "account"}} {{item.owner.name}}
+{{/if}}
+</div>

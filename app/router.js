@@ -74,6 +74,7 @@ Router.map(function () {
         this.route('membership-requests');
         this.route('apps');
 
+        this.route('activity');
       });
     });
     this.route('context-membership');

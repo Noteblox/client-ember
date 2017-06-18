@@ -61,6 +61,13 @@ module.exports = function(environment) {
   };
 
   if (environment === 'development') {
+    ENV.APP.minifyJS = {
+      enabled: false
+    };
+    ENV.APP.minifyCSS = {
+      enabled: false
+    };
+
 
     //TODO:  disable mirage so that it won’t intercept Ember
     // requests to other servers
