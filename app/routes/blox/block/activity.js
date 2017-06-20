@@ -10,14 +10,18 @@ BlockActivityRoute.reopen({
   actions: {
     showRow(source, model, e){
 
+      console.log("showRow, e: ");
+      console.log(e);
+
       let routeName;
+      let discriminator = model.get('discriminator');
 
       // if note
-      /*if(model.get('object.quote')){
+      if(model.get('object.quote')){
         routeName = 'notes.note'
       }
       // if case
-      else*/ if(model.get('object.name')){
+      else if(model.get('object.name')){
         routeName = 'issues.issue'
       }
       // else block
@@ -28,10 +32,8 @@ BlockActivityRoute.reopen({
       console.log(arguments);
       console.log("showRow, model: ");
       console.log(model);
-      console.log("showRow, e: ");
-      console.log(e);
-      if(route){
-        this.transitionTo(route, model);
+      if(routeName){
+        this.transitionTo(routeName, model);
       }
     },
   }

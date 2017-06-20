@@ -111,7 +111,7 @@ Router.map(function () {
 
     this.route('issues', function () {
       this.route('new');
-      this.route('issue', function () {
+      this.route('issue', {path: ':issue_id'}, function () {
           this.route('comments');
       });
 

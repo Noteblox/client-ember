@@ -4,12 +4,11 @@
 $primary: "indigo";
 $accent: "grey";
 $warn: "red";
+//@import "ember-cli-bootstrap-4/bootstrap";
 @import "color-palette";
 @import 'ember-paper';
 @import "ember-paper-tabs";
 @import "ember-paper-expansion-panel";
-//@import 'bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap';
-//@import 'ember-cli-admin';
 @import "ember-paper-stepper";
 
 $border-common-collor: rgb(232, 232, 232);
@@ -288,7 +287,6 @@ md-card {
        -webkit-transform: scaleY(1.0);
      }
 }
-
 $border-color: #DADADA;
 
 .ember-light-table {
@@ -396,35 +394,44 @@ $border-color: #DADADA;
       padding: 0 10px;
     }
   }
-}
 
-tfoot {
-  tr > td {
-    border-top: 1px solid #DADADA;
-    padding: 10px 10px 0 10px;
-    font-size: 13px;
-  }
 
-  form {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .pagination {
-    margin: 5px 0;
-    li > a {
-      color: $accent;
+  tfoot {
+    tr > td {
+      border-top: 1px solid #DADADA;
+      padding: 10px 10px 0 10px;
+      font-size: 13px;
     }
 
-    li > a:hover,
-    li > a:focus,
-    li.active > a:hover,
-    li.active > a:focus,
-    li.active > a {
-      color: white;
-      background: $accent;
-      border-color: $accent;
+    form {
+      display: flex;
+      justify-content: space-between;
+    }
 
+    .pagination {
+      display: inline-block;
+      padding-left: 0;
+      margin: 20px 0;
+      border-radius: 4px;
+
+      li {
+        display: inline;
+      }
+
+      li > a {
+        color: $accent;
+      }
+
+      li > a:hover,
+      li > a:focus,
+      li.active > a:hover,
+      li.active > a:focus,
+      li.active > a {
+        background: $accent;
+        border-color: $accent;
+
+      }
     }
   }
+
 }
