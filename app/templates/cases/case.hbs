@@ -1,0 +1,104 @@
+
+<div class="layout-column flex">
+  <div class="username">
+    {{model.parentApplication.title}}
+    {{model.name}}
+  </div>
+  <div class="layout-row">
+    <h1>
+      <span class="title">
+        {{model.title}}
+      </span>
+    </h1>
+  </div>
+  <div class="layout-row">
+      <p>Starus: <strong>{{model.status.name}}</strong>, created by  {{model.createdBy.firstName}} {{model.createdBy.lastName}} {{moment-from-now model.createdDate}} </p>
+  </div>
+  <div class="layout-row flex">
+    <div class="layout-column flwx-70">
+      <!-- case detail -->
+      {{markdown-to-html model.detail}}
+
+      <!-- case comments -->
+      <h3>Comments</h3>
+      {{#if model.comments.length}}
+
+        {{#each model.comments as |item|}}
+        <div class="layout-row">
+          {{#if item.avatarUrl~}}
+            <img src={{item.createdBy.avatarUrl}} alt={{item.createdBy.name}} class="md-avatar">
+          {{~else~}}
+            {{ember-initials class="md-avatar"
+              size=50
+              name=item.createdBy.name
+              seedText=item.createdBy.name
+              defaultName='?'
+              textColor="white"
+              fontSize=55
+              fontWeight=100
+              fontFamily="Helvetica Neue Light, Arial, sans-serif"
+            }}
+          {{~/if}}
+          {{#paper-content class="md-padding "}}
+            {{item.createdBy.firstName}} {{item.createdBy.lastName}} commented {{moment-from-now item.createdDate interval=60000}}
+              <div>
+                {{markdown-to-html
+                  markdown=item.detail
+                  strikethrough=true
+                  literalMidWordUnderscores=true
+                  simplifiedAutoLink=true}}
+              </div>
+          {{/paper-content}}
+        </div>
+        {{/each}}
+
+      {{else}}
+          <p>
+           No entries found.
+          </p>
+      {{/if}}
+
+      <!-- add comment -->
+       <h3>Add a comment</h3>
+      {{case-comments/case-comment-form caseModel=model}}
+
+
+
+    </div>
+    <div class="flayout-column flex-30">
+      <h3>Details</h3>
+      {{#if model.quote}}
+        <p>Quote: <i>"{{model.quote}}"</i></p>
+      {{/if}}
+      {{#if model.priority}}
+        <p>Priority: {{model.priority}}</p>
+      {{/if}}
+      <p>Starus: {{model.status.name}}</p>
+      <p>Created: {{moment-from-now model.createdDate}} </p>
+      <h3>Submitter</h3>
+      <p>{{model.createdBy.firstName}} {{model.createdBy.lastName}}</p>
+      <h3>Assignees</h3>
+      {{#if model.caseMopdel.assignee}}
+        <p>{{model.assignee.firstName}} {{model.assignee.lastName}}</p>
+      {{else}}
+        <p>None</p>
+      {{/if}}
+      <h3>Labels</h3>
+      {{#if model.caseMopdel.tags}}
+        <p>
+          {{#each model.caseMopdel.tags as |tag|}}
+            {{tag.name}}
+          {{/each}}
+        </p>
+      {{else}}
+        <p>None</p>
+      {{/if}}
+    </div>
+  </div>
+
+
+</div>
+
+
+
+

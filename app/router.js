@@ -19,7 +19,6 @@ Router.map(function () {
     this.route('user');
     this.route('forgot-password');
     this.route('protected');
-    this.route('profile', {path: '/accounts/profile'});
 
     this.route('application-embed');
     this.route('account');
@@ -109,29 +108,26 @@ Router.map(function () {
       });
     });
 
-    this.route('issues', function () {
+    this.route('cases', function () {
       this.route('new');
-      this.route('issue', {path: ':issue_id'}, function () {
+      this.route('case', {path: ':case_id'}, function () {
           this.route('comments');
       });
 
       this.route('edit', {
-          path: ':issue_id/edit'
+          path: ':case_id/edit'
       });
 
-      this.route('show', {
-          path: ':issue_id'
-      });
     });
-    this.route('issue-comments', function () {
+    this.route('case-comments', function () {
         this.route('new');
 
         this.route('edit', {
-            path: ':issue-comment_id/edit'
+            path: ':case-comment_id/edit'
         });
 
         this.route('show', {
-            path: ':issue-comment_id'
+            path: ':case-comment_id'
         });
     });
     this.route('help');

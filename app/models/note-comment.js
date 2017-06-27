@@ -1,8 +1,8 @@
 import DS from 'ember-data';
 import CaseComment from './case-comment';
 
-const IssueComment = CaseComment.extend({
+const NoteComment = CaseComment.extend({
 });
 
 
-export default IssueComment;
+export default NoteComment;

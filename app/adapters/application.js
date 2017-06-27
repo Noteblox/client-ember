@@ -5,18 +5,19 @@ import {singularize, pluralize} from 'ember-inflector';
 import DataAdapterMixin from "ember-simple-auth/mixins/data-adapter-mixin";
 import ENV from "../config/environment";
 
-export default DS.JSONAPIAdapter.extend(DataAdapterMixin, {
+export default DS.RESTAdapter.extend(DataAdapterMixin, {
 
   host: `${ENV.apiHost}`,
   namespace: `${ENV.namespace}`,
   authorizer: `${ENV.authorizer}`,
   headers: {
-    'Accept': 'application/vnd.api+json;charset=UTF-8',
-    'Content-type': 'application/vnd.api+json;charset=UTF-8',
+    //'Accept': 'application/vnd.api+json;charset=UTF-8',
+    //'Content-type': 'application/vnd.api+json;charset=UTF-8',
+    'Accept': 'application/json;charset=UTF-8',
+    'Content-type': 'application/json;charset=UTF-8',
    // 'x-vendor-appid': '123',
    // 'x-vendor-secret': '12345'
   },
-
   pathForType: function(type) {
     console.log("pathForType, type: " + type);
     const newType = Ember.String.camelize(type);
@@ -64,6 +65,6 @@ export default DS.JSONAPIAdapter.extend(DataAdapterMixin, {
     }
 
     return this._super(...arguments);
-  }
+  },
 
 });

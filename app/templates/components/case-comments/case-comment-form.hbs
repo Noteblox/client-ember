@@ -1,0 +1,8 @@
+{{#paper-form onSubmit=(action "submit" model) as |form|}}
+  <div>
+     {{paper-input block=true textarea=true id="detail" label="Comment text" type="text" value=model.detail onChange=(action (mut model.detail)) required=true}}
+  </div>
+  <div>
+  {{#form.submit-button type="submit" raised=true primary=true disabled=form.isInvalid}}Submit{{/form.submit-button}}
+  </div>
+{{/paper-form}}

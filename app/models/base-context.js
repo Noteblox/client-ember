@@ -1,20 +1,17 @@
 import Ember from 'ember';
 import DS from "ember-data";
+import Resource from './resource';
 
 const {
   computed
 } = Ember;
 
 
-const BaseContext = DS.Model.extend({
+const BaseContext = Resource.extend({
 
-  name: DS.attr('string'),
-  title: DS.attr('string'),
-  description: DS.attr('string'),
   avatarUrl: DS.attr('string'),
   bannerUrl: DS.attr('string'),
   visibility: DS.attr('visibility', { defaultValue: "CLOSED" }),
-  createdDate: DS.attr('utc'),
   owner: DS.belongsTo('user'),
   space: DS.attr(),
   membershipsCount: DS.attr(),

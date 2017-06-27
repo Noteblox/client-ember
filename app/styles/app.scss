@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Lato');
 
 // Define desired color palettes.
-$primary: "indigo";
+$primary: "blue";
 $accent: "grey";
 $warn: "red";
 //@import "ember-cli-bootstrap-4/bootstrap";
@@ -11,9 +11,10 @@ $warn: "red";
 @import "ember-paper-expansion-panel";
 @import "ember-paper-stepper";
 
-$border-common-collor: rgb(232, 232, 232);
+$border-common-collor: rgb(211,211,211);
 $border-common: 1px solid $border-common-collor;
-$primary-color: rgb(63, 81, 181); /*equal to "indigo"*/
+$border-common-dotted: 1px dotted $border-common-collor;
+$primary-color: rgb(70,133,248);//rgb(63, 81, 181); /*equal to "indigo"*/
 
 
 html {
@@ -32,20 +33,20 @@ img.avatar {
 }
 
 nav.top-nav {
-  border-bottom: $border-common;
 }
 
 body {
+  background-color: rgb(249,249,251);
   font-size: 1.125rem;
   line-height: 1.5rem;
   font-family: Lato,appleLogo,sans-serif;
   font-variant-ligatures: common-ligatures;
-  color: rgb(140, 140, 140);
+  color: rgb(105, 105, 105);
 }
 
 .logo {
   color: #555;
-  background-color: #f8f8f8;
+  background-color: transparent;
 }
 
 h1, h2, h3, h4, h5, h6, header {
@@ -61,12 +62,14 @@ h1, h2, h3, h4, h5, h6, header {
 .lt-row td h3,
 .lt-row td h4,
 .lt-row td h5{
+  text-transform: capitalize;
   font-size: larger;
-  font-weight: normal;
-  color: rgba(0, 0, 0, 0.87);
+  color: rgb(105, 105, 105);
   margin: 0px;
 }
-
+h1 span.title{
+  line-height: 40px;
+}
 .md-subhead,
 .lt-row td .subhead{
   font-size: smaller;
@@ -77,8 +80,9 @@ h1, h2, h3, h4, h5, h6, header {
   display:block;
 }
 
-
-
+.no-padding {
+  padding: 0px;
+}
 .box-shadow-inner {
   /*
   -webkit-box-shadow: inset 10px 10px 74px 47px rgba(0,0,0,0.14);
@@ -88,14 +92,20 @@ h1, h2, h3, h4, h5, h6, header {
 }
 
 .site-sidenav > md-sidenav {
-  border-right: 1px solid rgb(232, 232, 232);
+  border-right: $border-common-dotted;
+/*
+  -webkit-box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+  */
 }
 md-icon.md-default-theme, md-icon {
   color: inherit;
 }
 
-.md-menu-toolbar, .md-menu-toolbar-top{
-  border-bottom: 1px solid rgb(232, 232, 232);
+md-toolbar.md-menu-toolbar.md-default-theme,
+.md-menu-toolbar-top{
+  border-bottom: $border-common-dotted;
 }
 
 .md-menu-toolbar-top > .md-toolbar-tools,
@@ -104,9 +114,9 @@ md-icon.md-default-theme, md-icon {
   padding-right: 0;
 }
 
-md-content.main-content.md-default-theme {
-   background-color: #f8f8f8;
- }
+md-content.md-default-theme {
+  background-color: transparent;
+}
 
 md-sidenav > md-card {
   margin: 0;

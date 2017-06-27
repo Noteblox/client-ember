@@ -1,7 +1,6 @@
+import BaseSearch from "./base-search";
 
-import BaseSearch  from './base-search';
-
-const BlockActivityRoute = BaseSearch.extend( {
+const BlockActivityRoute = BaseSearch.extend({
   modelTypeName: 'activity-log',
 });
 /*
@@ -30,17 +29,16 @@ BlockActivityRoute.reopen({
       let predicate = model.get('predicate');
 
 
-
       // if note/issue
-      if(predicate == 'CREATED_NOTE' || predicate == 'UPDATED_NOTE'
-        || predicate == 'CREATED_ISSUE' || predicate == 'UPDATED_ISSUE'){
-        routeName = 'issues.issue.index';
+      if (predicate == 'CREATED_NOTE' || predicate == 'UPDATED_NOTE'
+        || predicate == 'CREATED_ISSUE' || predicate == 'UPDATED_ISSUE') {
+        routeName = 'cases.case.index';
         routeModel = model.get('object.id');
         console.log("showRow, issue/note: ");
         console.log(model.get('object'));
       }
       // else block
-      else if(predicate == 'BECAME_MEMBER_OF'){
+      else if (predicate == 'BECAME_MEMBER_OF') {
         routeName = 'blox.block.index'
         routeModel = model.get('context.id');
         console.log("showRow, context: ");
@@ -48,7 +46,7 @@ BlockActivityRoute.reopen({
       }
       console.log("showRow, discriminator: " + discriminator + ", routeName: " + routeName + ", routeModel: ");
       console.log(routeModel);
-      if(routeName){
+      if (routeName) {
         this.transitionTo(routeName, routeModel);
       }
     },

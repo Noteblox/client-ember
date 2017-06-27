@@ -1,4 +1,4 @@
-import Ember from "ember";
+  import Ember from "ember";
 import ENV from "../config/environment";
 import Base from "ember-simple-auth/authenticators/base";
 

@@ -1,0 +1,18 @@
+<!-- app/templates/issues/index.hbs -->
+<div class="layout-fill layout-row layout-align-center-start ">
+  {{#paper-card as |card|}}
+    {{#paper-toolbar class="md-menu-toolbar" as |toolbar|}}
+      {{#toolbar.tools class="layout-row"}}
+        <span class="flex"></span>
+        <h2>Issues</h2>
+        <span class="flex"></span>
+      {{/toolbar.tools}}
+    {{/paper-toolbar}}
+    <div class="layout-fill layout-row layout-align-center-start ">
+    {{paginated-table model=model modelName='issue' }}
+    </div>
+  {{/paper-card}}
+</div>
+
+
+TEST

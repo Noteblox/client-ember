@@ -4,7 +4,7 @@
       {{form.input flex-md=40 id="name" label="Name" type="text" value=model.name onChange=(action (mut model.name)) required=true}}
       {{form.input flex-md=60 id="title" label="Title" type="text" value=model.title onChange=(action (mut model.title)) required=true}}
   </div>
-  {{paper-input block=true textarea=true id="description" label="Description" type="text" value=model.description onChange=(action (mut model.description)) required=true}}
+  {{paper-input block=true textarea=true id="detail" label="Detail" type="text" value=model.detail onChange=(action (mut model.detail)) required=true}}
 
   <div class="layout-row">
      {{#form.submit-button type="submit" raised=true id='save-btn' value="Save" primary=true}}Save{{/form.submit-button}}

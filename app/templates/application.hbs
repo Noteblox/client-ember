@@ -1,63 +1,54 @@
 {{#if session.isAuthenticated}}
-  {{#paper-toolbar class="md-menu-toolbar md-menu-toolbar-top" as |toolbar|}}
 
-    {{#toolbar.tools }}
-      {{#paper-list}}
-        {{#paper-item  onClick=(action (transition-to "/"))}}
-          {{paper-icon "home"}}
-          <h3 class="logo">noteblox</h3>
-        {{/paper-item}}
-      {{/paper-list}}
-      {{#paper-sidenav-toggle name="left" as |toggleAction|}}
-        {{#paper-button  classNames="hide-gt-sm" onClick=(action toggleAction)}}
-         {{paper-icon "menu"}}
-        {{/paper-button}}
-      {{/paper-sidenav-toggle}}
-    {{/toolbar.tools}}
- {{/paper-toolbar}}
 
  {{#paper-sidenav-container  class="site-sidenav"}}
 
    {{#paper-sidenav class="md-sidenav-left " name="left" open=leftSideBarOpen onToggle=(action (mut leftSideBarOpen)) }}
+
+     {{#paper-toolbar class="md-menu-toolbar" as |toolbar|}}
+       {{#toolbar.tools  class="no-padding"}}
+           {{#paper-item  onClick=(action (transition-to "/"))}}
+             {{paper-icon "home"}}
+             <h3 class="logo">noteblox</h3>
+           {{/paper-item}}
+       {{/toolbar.tools}}
+    {{/paper-toolbar}}
     {{#paper-toolbar class="md-menu-toolbar md-menu-toolbar-user" as |toolbar|}}
       {{#toolbar.tools}}
         {{#paper-list}}
-          {{#paper-item class="md-2-line" as |controls| }}
+          {{#paper-item as |controls| }}
         {{#if sessionAccount.account.avatarUrl}}
-           <img src={{sessionAccount.account.avatarUrl}} alt={{sessionAccount.account.name}} class="md-avatar user-avatar">
+           <img src={{sessionAccount.account.avatarUrl}} alt={{sessionAccount.account.name}} class="md-avatar">
          {{else}}
            {{ember-initials class="md-avatar"
-               size=50
+               size=24
                name=sessionAccount.account.name
                seedText=sessionAccount.account.name
                defaultName='?'
                textColor="white"
-               fontSize=55
+               fontSize=34
                fontWeight=100
                fontFamily="Helvetica Neue Light, Arial, sans-serif"
            }}
          {{/if}}
          <div class="md-list-item-text">
-           <h3>{{sessionAccount.account.name}} <span class="username">({{sessionAccount.account.username}})</span></h3>
-           <p>Joined {{moment-to-now sessionAccount.account.createdDate}} </p>
+           <h3>{{sessionAccount.account.name}} <!--span class="username">({{sessionAccount.account.username}})</span--></h3>
          </div>
        {{/paper-item}}
        {{/paper-list}}
          <div class="flex">
            &nbsp;
           </div>
+         <div>
          {{#paper-button  onClick=(route-action "invalidateSession") aria-label="Logout"}}
           {{paper-icon "settings-power"}}
          {{/paper-button}}
+         </div>
       {{/toolbar.tools}}
     {{/paper-toolbar}}
 
      {{#paper-list}}
 
-       {{#paper-item  onClick=(action (transition-to "friends"))}}
-        {{paper-icon "people-outline"}}
-        <p>Friends</p>
-       {{/paper-item}}
        {{#paper-item  onClick=(action (transition-to "space-apps"))}}
         {{paper-icon "apps"}}
         <p>Apps</p>
@@ -66,6 +57,7 @@
         {{paper-icon "domain"}}
         <p>Blox</p>
        {{/paper-item}}
+       <!--
        {{#paper-item  onClick=(action (transition-to "notes"))}}
         {{paper-icon "content-paste"}}
         <p>Notes</p>
@@ -74,11 +66,15 @@
         {{paper-icon "assignment"}}
         <p>Issues</p>
        {{/paper-item}}
+       {{#paper-item  onClick=(action (transition-to "friends"))}}
+        {{paper-icon "people-outline"}}
+        <p>Friends</p>
+       {{/paper-item}}
        {{#paper-item  onClick=(action (transition-to "statistics"))}}
         {{paper-icon "timeline"}}
         <p>Statistics</p>
        {{/paper-item}}
-
+       -->
        {{#paper-item  onClick=(action (transition-to "billing"))}}
         {{paper-icon "payment"}}
         <p>Billing</p>
@@ -88,11 +84,11 @@
         <p>Help &amp; Support</p>
        {{/paper-item}}
 
+       <!--
        {{#paper-item  onClick=(action (transition-to "users"))}}
         {{paper-icon "people"}}
         <p>User Accounts</p>
        {{/paper-item}}
-       <!--
        {{#paper-item  onClick=(action (transition-to "issues.issue.comments"))}}
         {{paper-icon "folder"}}
         <p>issue</p>
@@ -119,8 +115,16 @@
 
   <div class="layout-row flex box-shadow-inner">
     <div class="layout-column flex">
-      {{#paper-toolbar class="flex-initial hide-sm md-menu-toolbar" as |toolbar|}}
+      {{#paper-toolbar class="flex-initial md-menu-toolbar" as |toolbar|}}
+
+
         {{#toolbar.tools}}
+
+          {{#paper-sidenav-toggle name="left" as |toggleAction|}}
+            {{#paper-button  classNames="hide-gt-sm" onClick=(action toggleAction)}}
+             {{paper-icon "menu"}}
+            {{/paper-button}}
+          {{/paper-sidenav-toggle}}
           {{bread-crumbs tagName="ol"  linkable=true}}
         {{/toolbar.tools}}
       {{/paper-toolbar}}
