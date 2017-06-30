@@ -62,6 +62,11 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
     },
     logout: function() {
       this.get('session').close();
+    },
+    transitionToRouteName: function(routeName, model){
+      console.log('application route actions transitionToRouteName: ' + routeName);
+      this.transitionTo(routeName, model);
     }
   }
+
 });

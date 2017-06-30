@@ -1,28 +1,30 @@
-import Ember from 'ember';
+import Ember from "ember";
 import DS from "ember-data";
-import Resource from './resource';
+import Resource from "./resource";
 
 const {
   computed
 } = Ember;
 
 
-const BaseContext = Resource.extend({
+const BaseContext = DS.Model.extend(Resource, {
 
   avatarUrl: DS.attr('string'),
   bannerUrl: DS.attr('string'),
-  visibility: DS.attr('visibility', { defaultValue: "CLOSED" }),
+  visibility: DS.attr('visibility', {defaultValue: "CLOSED"}),
   owner: DS.belongsTo('user'),
-  space: DS.attr(),
+  //space: DS.attr(),
   membershipsCount: DS.attr(),
-  memberships: DS.hasMany('context-membership'),
-  membershipRequests: DS.hasMany('context-membership-request')
+
+  memberships: DS.hasMany('context-membership', {async: true, inverse: 'space'}),
+  membershipRequests: DS.hasMany('context-membership-request', {async: true, inverse: 'space'}),
+
 
 });
 
 
 BaseContext.reopenClass({
-  columns: computed(function() {
+  columns: computed(function () {
     return [{
       label: '',
       avatarUrlPath: 'avatarUrl',

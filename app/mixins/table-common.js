@@ -67,6 +67,7 @@ export default Ember.Mixin.create({
     if (!this.get('columns')) {
       // Use default columns for model class if provided with a modelName
       const modelName = this.get('modelName');
+      console.log("table-common init, modelName: " + modelName);
       if (modelName) {
         const ModelTypw = this.get('store').modelFor(modelName);
         if (ModelTypw) {

@@ -15,7 +15,7 @@ export default Ember.Component.extend({
   didReceiveAttrs() {
     this.initModel();
   },
-  initModel() {
+  initModel(clear) {
     const modelName =  singularize(this.caseModel.get('pathFragment'));
     console.log('case-comment-form didReceiveAttrs, modelName: ' + modelName + ', pathFragment: ' + this.caseModel.get('pathFragment') );
     if(!this.model){
@@ -27,16 +27,21 @@ export default Ember.Component.extend({
       if(!commentType){
         throw "Could not map case type '" + modelName + "' to a corresponding comment type";
       }
-      this.model = this.get('store').createRecord(commentType, {
-      });
+      this.set('model', this.get('store').createRecord(commentType, {}));
     }
   },
   actions: {
     submit: function (model) {
-      this.model.save().then(function() {
-        route.transitionTo('cases.case', this.caseModel.get('id'));
-      }, function() {
-        console.log('Failed to save the model');
+      const _this = this;
+      this.caseModel.get('comments').pushObject(this.model);
+      this.model.set('parentCase', {id: this.caseModel.get('id')});
+      this.model.save().then(function(saved) {
+        console.log('saved the comment: ');
+        console.log(saved);
+        _this.set('model', null);
+        _this.initModel(true);
+        //_this.rerender();//.initModel(true);
+        //_this.sendAction('transitionToRouteName', 'cases.case', _this.caseModel.get('id'));
       });
     },
   },

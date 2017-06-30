@@ -5,10 +5,7 @@ export default DS.Transform.extend({
   serialize: function(value) {
     return value ? value.toJSON() : null;
   },
-
   deserialize: function(value) {
-    const newValue = moment.utc(value);
-    console.log("deserialize value: " + value + ", newValue: " + newValue);
-    return newValue;
+    return moment.utc(value);
   }
 });

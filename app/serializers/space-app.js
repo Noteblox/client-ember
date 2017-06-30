@@ -1,5 +1,5 @@
 import DS from 'ember-data';
-import Base from './base-context';
+import BaseContext from './base-context';
 
-export default Base.extend({
+export default BaseContext.extend({
 });

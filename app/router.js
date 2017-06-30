@@ -74,6 +74,7 @@ Router.map(function () {
         this.route('apps');
 
         this.route('activity');
+        this.route('newcase');
       });
     });
     this.route('context-membership');

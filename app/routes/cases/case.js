@@ -6,7 +6,6 @@ const { inject: { service }, RSVP } = Ember;
 
 export default BaseAuthenticated.extend(SaveCaseMixin, {
   breadCrumbModelTitleProperty: 'caseModel.name',
-
   model(params) {
     console.log("model, params: ");
     console.log(params);
@@ -27,6 +26,12 @@ export default BaseAuthenticated.extend(SaveCaseMixin, {
 
     });
     */
+  },
+  actions : {
+    transitionToRouteName: function(routeName, model){
+      console.log('actions transitionToRouteName: ' + routeName);
+      this.transitionTo(routeName, model);
+    }
   }
 
 });
