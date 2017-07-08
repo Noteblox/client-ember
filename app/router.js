@@ -16,7 +16,6 @@ Router.map(function () {
     this.route('server-error', {path: '/auth/500'});
     this.route('login', {path: '/auth/login'});
     this.route('register', {path: '/auth/register'});
-    this.route('user');
     this.route('forgot-password');
     this.route('protected');
 
@@ -30,15 +29,16 @@ Router.map(function () {
     });
 
     this.route('users', function () {
-        this.route('new');
+      this.route('new');
 
-        this.route('edit', {
-            path: ':user_id/edit'
-        });
+      this.route('edit', {
+          path: ':user_id/edit'
+      });
 
-        this.route('show', {
-            path: ':user_id'
-        });
+      this.route('show', {
+          path: ':user_id'
+      });
+      this.route('user', {path: ':user_id'}, function() {});
     });
     this.route('home');
     this.route('accountandprofile');
@@ -60,21 +60,18 @@ Router.map(function () {
     });
 
 
-    this.route('blox', function () {
+    this.route('blocks', function () {
       this.route('new');
-      this.route('find', function () {
-        this.route('joined');
-        this.route('owned');
-      });
+      this.route('joined');
+      this.route('owned');
       this.route('block', {path: ':block_id'}, function () {
-        this.route('settings');
+        this.route('activity');
         this.route('members');
         this.route('billing');
         this.route('membership-requests');
         this.route('apps');
+        this.route('settings');
 
-        this.route('activity');
-        this.route('newcase');
       });
     });
     this.route('context-membership');
@@ -103,9 +100,12 @@ Router.map(function () {
 
 
       this.route('app', {path: ':app_id'}, function () {
-        this.route('settings');
+        this.route('activity');
         this.route('members');
         this.route('membership-requests');
+        this.route('newcase');
+        this.route('settings');
+        this.route('cases');
       });
     });
 

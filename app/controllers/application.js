@@ -2,8 +2,8 @@
 import Ember from "ember";
 
 export default Ember.Controller.extend({
-  session: Ember.inject.service(),
-  sessionAccount: Ember.inject.service(),
+  session: Ember.inject.service('session'),
+  userDetails: Ember.inject.service('user-details'),
 });
 /*
  "meta":{

@@ -1,0 +1,63 @@
+
+<!-- <div class="layout-fill layout-row layout-align-center-start ">
+  {{#paper-card as |card|}}
+    {{#paper-toolbar class="md-menu-toolbar" as |toolbar|}}
+    {{#toolbar.tools class="layout-row"}}
+      <span class="flex"></span>
+      <h2 class="">New Space</h2>
+      <span class="flex"></span>
+      {{#paper-button onClick=(action (transition-to "blocks.index")) aria-label="Back to Spaces"}}
+       {{paper-icon "navigate-before"}} Back
+      {{/paper-button}}
+    {{/toolbar.tools}}
+  {{/paper-toolbar}}
+
+    {{#card.content class="layout-row layout-align-space-between"}}
+      {{partial "blox/form"}}
+    {{/card.content}}
+
+  {{/paper-card}}
+</div>
+
+-->
+
+{{#paper-stepper currentStep=currentStep onStepChange=(action (mut currentStep))
+   as |stepper|}}
+
+  {{#stepper.step label="Select space type" as |step|}}
+    {{#step.body}}
+
+    {{#paper-radio-group
+     groupValue=(readonly model.type)
+     onChange=(action (mut model.type)) as |group|}}
+     {{#group.radio value="Organization" primary=true}} Organization {{/group.radio}}
+     {{#group.radio value="Website" primary=true}} Website {{/group.radio}}
+     {{#group.radio value="Project" primary=true}} Project {{/group.radio}}
+    {{/paper-radio-group}}
+
+
+    {{/step.body}}
+    {{#step.actions as |nextStep previousStep|}}
+      {{#paper-button primary=true raised=true onClick=(action nextStep)}}
+        Continue
+      {{/paper-button}}
+      {{#paper-button onClick=(action previousStep)}}
+        Back
+      {{/paper-button}}
+    {{/step.actions}}
+  {{/stepper.step}}
+ <!--end of step 1 -->
+ {{#stepper.step label="Select more details" as |step|}}
+   {{#step.body}}
+     {{partial "blocks/form"}}
+   {{/step.body}}
+   {{#step.actions as |nextStep previousStep|}}
+     {{#paper-button onClick=(action previousStep)}}
+       Back
+     {{/paper-button}}
+   {{/step.actions}}
+ {{/stepper.step}}
+
+
+
+{{/paper-stepper}}

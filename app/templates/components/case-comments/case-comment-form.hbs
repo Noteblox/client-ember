@@ -3,6 +3,15 @@
      {{paper-input block=true textarea=true id="detail" label="Comment text" type="text" value=model.detail onChange=(action (mut model.detail)) required=true}}
   </div>
   <div>
+  <!--
+  {{#paper-select
+    placeholder="Status: "
+    options=caseModel.parentApplication.workflow.statuses
+    onChange=(action (mut model.status))
+    as |status|}}
+    {{status.name}}
+  {{/paper-select}}
+  -->
   {{#form.submit-button type="submit" raised=true primary=true disabled=form.isInvalid}}Submit{{/form.submit-button}}
   </div>
 {{/paper-form}}

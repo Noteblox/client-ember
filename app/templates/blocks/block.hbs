@@ -1,0 +1,12 @@
+{{#paper-tabs class='md-no-tab-content' centerTabs=true borderBottom=true as |tabs|}}
+   {{tabs.tab label="Activity" onSelect=(action (transition-to "blocks.block.activity" model))}}
+   {{tabs.tab label="Members" onSelect=(action (transition-to "blocks.block.members" model))}}
+   {{tabs.tab label="Requests" onSelect=(action (transition-to "blocks.block.membership-requests" model))}}
+   {{tabs.tab label="Apps" onSelect=(action (transition-to "blocks.block.apps" model))}}
+   {{tabs.tab label="Settings" onSelect=(action (transition-to "blocks.block.settings" model))}}
+ {{/paper-tabs}}
+ <md-tabs-content-wrapper style="display:none"/>
+
+<div class="layout-fill layout-row layout-align-center-start ">
+  {{outlet}}
+</div>

@@ -1,0 +1,3 @@
+
+    <h5>{{#truncate-multiline lines=1 truncate=false  showButton=false ~}}{{row.title}}{{~/truncate-multiline}}</h5>
+    <span class="subhead">{{row.name}} created {{moment-from-now row.createdDate}} by {{row.createdBy.name}}, {{#if ow.assignee}}assigned to {{row.assignee.name}}{{else}}unassigned{{/if}}, status: {{row.statusName}}</span>

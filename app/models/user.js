@@ -11,6 +11,11 @@ const User = DS.Model.extend({
   username: DS.attr('string'),
   firstName: DS.attr('string'),
   lastName: DS.attr('string'),
+
+  avatarUrl: DS.attr('string'),
+  bannerUrl: DS.attr('string'),
+
+  createdDate: DS.attr('utc'),
   email: DS.attr('string'),
   password: DS.attr('string'),
   passwordConfirmation: DS.attr('string')

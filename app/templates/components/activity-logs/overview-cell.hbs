@@ -1,0 +1,28 @@
+<h4>
+
+{{#link-to "users.user" row.subject.id}}{{row.subject.name}}{{/link-to}}
+
+{{row.predicateDescription}}
+
+{{#if row.object.name}}
+  {{#if row.object.parentApplication}}
+    {{#link-to "cases.case" row.object.id}}{{row.object.name}}{{/link-to}}
+  {{else if row.object.parentCase}}
+    {{#link-to "cases.case" row.object.parentCase.id}}{{row.object.name}}{{/link-to}}
+  {{else}}
+    <span>{{row.object.name}}</span>
+  {{/if}}
+  {{#if row.context}} in {{/if}}
+{{/if}}
+{{#if row.context}}
+  {{#if row.context.workflow}}
+    {{#link-to "space-apps.app" row.context.id}}{{row.context.title}}{{/link-to}}
+  {{else}}
+    {{#link-to "blocks.block" row.context.id}}{{row.context.title}}{{/link-to}}
+  {{/if}}
+{{/if}}
+
+</h4>
+<div class="subhead">
+ Logged {{moment-from-now row.createdDate}} for {{row.createdBy.name}}
+</div>

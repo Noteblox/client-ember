@@ -43,51 +43,97 @@ export default DS.JSONSerializer.extend({
     }
 
   },
-  normalizeArrayResponse(store, primaryModelClass, payload, id, requestType) {
-    console.log("normalizeArrayResponse, payload:");
-    console.log(payload);
+  /**
+   @method _normalizeResponse
+   @param {DS.Store} store
+   @param {DS.Model} primaryModelClass
+   @param {Object} payload
+   @param {String|Number} id
+   @param {String} requestType
+   @param {Boolean} isSingle
+   @return {Object} JSON-API Document
+   @private
+   */
+  _normalizeResponse(store, primaryModelClass, payload, id, requestType, isSingle) {
+    let documentHash = {
+      data: null,
+      included: []
+    };
 
-    const result = this._super(store, primaryModelClass, (payload && payload.content ? payload.content : []), id, requestType);
+    let meta = this.extractMeta(store, primaryModelClass, payload);
+    if (meta) {
+      assert('The `meta` returned from `extractMeta` has to be an object, not "' + Ember.typeOf(meta) + '".', Ember.typeOf(meta) === 'object');
+      documentHash.meta = meta;
+    }
 
-    /*
-    let normalizedPayload = payload;
-    if(payload){
-      // wrap payload to pluralized model name
-      if(Ember.isArray(payload)){
-        normalizedPayload = {};
-        normalizedPayload[pluralize(primaryModelClass.modelName)] = payload;
+    if (isSingle) {
+      let { data, included } = this.normalize(primaryModelClass, payload);
+      documentHash.data = data;
+      if (included) {
+        documentHash.included = included;
       }
-      // rename "content" to pluralized model name
-      else if(payload && Ember.isArray(payload.content)){
-        normalizedPayload[pluralize(primaryModelClass.modelName)] = normalizedPayload.content;
-        delete normalizedPayload.content;
+    } else {
+
+      // setup data
+      let content = payload.content;
+      let ret = new Array(content.length);
+      for (let i = 0, l = content.length; i < l; i++) {
+        let item = content[i];
+        let { data, included } = this.normalize(primaryModelClass, item);
+        if (included) {
+          documentHash.included.push(...included);
+        }
+        ret[i] = data;
+      }
+      documentHash.data = ret;
+
+
+      // add "page" and "urlParameters" to meta
+      if(payload.page !== undefined){
+        documentHash.meta || (documentHash.meta = {});
+        documentHash.meta.page = payload.page;
+      }
+      if(payload.urlParameters !== undefined){
+        documentHash.meta || (documentHash.meta = {});
+        documentHash.meta.urlParameters = payload.urlParameters;
+      }
+      if(payload.links !== undefined){
+        //documentHash.meta || (documentHash.meta = {});
+        //documentHash.meta.links = payload.links;
+        documentHash.links = payload.links;
       }
     }
-     */
 
-    // init meta
-    result.meta || (result.meta = {});
-
-    // move "links" into meta
-    if(payload.links !== undefined){
-      result.meta.links = payload.links;
-    }
-
-    // move "page" into meta
-    if(payload.page !== undefined){
-      result.meta.page = payload.page;
-    }
-
-    // move "urlParameters" into meta
-    if(payload.urlParameters !== undefined){
-      result.meta.urlParameters = payload.urlParameters;
-    }
-
-    console.log("normalizeArrayResponse, result:");
-    console.log(result);
-    return result;
+    return documentHash;
   },
+  /*
+   @method normalize
+   @param {DS.Model} typeClass
+   @param {Object} hash
+   @return {Object}
+   */
+  normalize(modelClass, resourceHash) {
+    let data = null;
 
+    if (resourceHash) {
+      this.normalizeUsingDeclaredMapping(modelClass, resourceHash);
+      if (Ember.typeOf(resourceHash.links) === 'object') {
+        this.normalizeUsingDeclaredMapping(modelClass, resourceHash.links);
+      }
+
+      data = {
+        id:            this.extractId(modelClass, resourceHash),
+        type:          modelClass.modelName,
+        attributes:    this.extractAttributes(modelClass, resourceHash),
+        relationships: this.extractRelationships(modelClass, resourceHash)
+      };
+      console.log('normalize, data: ');
+      console.log(data);
+      this.applyTransforms(modelClass, data.attributes);
+    }
+
+    return { data };
+  },
   /*
   serialize(snapshot, options) {
     console.log("serialize options: ");

@@ -1,12 +1,12 @@
 // app/routes/application.js
-
 import Ember from "ember";
-import ApplicationRouteMixin from "ember-simple-auth/mixins/application-route-mixin";
+import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mixin';
 
 const { service } = Ember.inject;
 
 export default Ember.Route.extend(ApplicationRouteMixin, {
-  sessionAccount: service('session-account'),
+
+  session: service('session'),
   breadCrumbModelTitleProperty: 'name',
   // add calculated property dynamically based on "breadCrumbModelTitleProperty"
   // to determine breadcrumb name
@@ -16,10 +16,8 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
     let breadCrumbSet = false;
 
     let modelTitleProperty = model ?  this.get('breadCrumbModelTitleProperty') : false;
-    console.log("breadCrumbModelTitleProperty: " + modelTitleProperty);
     if(modelTitleProperty){
       modelTitleProperty = `controller.model.${modelTitleProperty}`;
-      console.log("breadCrumbModelTitleProperty: " + modelTitleProperty);
 
       Ember.defineProperty(this, 'breadCrumb', Ember.computed('breadCrumbTitle', modelTitleProperty, function(){
 
@@ -33,29 +31,41 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
       }));
     }
   },
-  beforeModel(transition) {
-    //this._super(transition, queryParams);
-    // widget mode?
-    if(document.getElementById("restdude-embedded")){
-      console.log("Switching to embed mode...");
-      this.transitionTo('application-embed');
-    }
-    else{
-
-      return this._loadCurrentUser();
-    }
-  },
-
-
+  /**
+   This method handles the session's
+   {{#crossLink "SessionService/authenticationSucceeded:event"}}{{/crossLink}}
+   event. If there is a transition that was previously intercepted by the
+   {{#crossLink "AuthenticatedRouteMixin/beforeModel:method"}}
+   AuthenticatedRouteMixin's `beforeModel` method{{/crossLink}} it will retry
+   it. If there is no such transition, the `ember_simple_auth-redirectTarget`
+   cookie will be checked for a url that represents an attemptedTransition
+   that was aborted in Fastboot mode, otherwise this action transitions to the
+   {{#crossLink "Configuration/routeAfterAuthentication:property"}}{{/crossLink}}.
+   @method sessionAuthenticated
+   @public
+   */
   sessionAuthenticated() {
-    this._loadCurrentUser().then(()=>{
-      this.transitionTo('/');
-    }).catch(() => this.get('session').invalidate());
+    this._super(...arguments);
+    const userDetails = this.get('session.userDetails');
+    console.log('application sessionAuthenticated, userDetails: ' + (userDetails ? userDetails.get('name') : userDetails));
+  },
+  /**
+   This method handles the session's
+   {{#crossLink "SessionService/invalidationSucceeded:event"}}{{/crossLink}}
+   event. __It reloads the Ember.js application__ by redirecting the browser
+   to the application's root URL so that all in-memory data (such as Ember
+   Data stores etc.) gets cleared.
+   If the Ember.js application will be used in an environment where the users
+   don't have direct access to any data stored on the client (e.g.
+   [cordova](http://cordova.apache.org)) this action can be overridden to e.g.
+   simply transition to the index route.
+   @method sessionInvalidated
+   @public
+   */
+  sessionInvalidated() {
+    this._super(...arguments);
   },
 
-  _loadCurrentUser() {
-    return this.get('sessionAccount').loadCurrentUser();
-  },
   actions: {
     invalidateSession: function() {
       this.get('session').invalidate();
@@ -64,7 +74,6 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
       this.get('session').close();
     },
     transitionToRouteName: function(routeName, model){
-      console.log('application route actions transitionToRouteName: ' + routeName);
       this.transitionTo(routeName, model);
     }
   }

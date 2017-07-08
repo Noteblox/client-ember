@@ -1,0 +1,42 @@
+{{#paper-form onSubmit=(route-action "submit" model) as |form|}}
+  <div>
+    {{form.input id="title" label=" Title" type="text" value=model.title onChange=(action (mut model.title)) required=true}}
+  </div>
+  <div>
+     {{paper-input block=true textarea=true id="detail" label="Detail" type="text" value=model.detail onChange=(action (mut model.detail)) required=true}}
+  </div>
+  <!--div>
+    {{form.input id="visibility" label="Visibility" type="text" value=model.visibility onChange=(action (mut model.visibility)) required=false}}
+  </div-->
+  <div>
+
+{{#if model.assignee}}
+  Assigned to {{model.assignee.name}}
+{{else}}
+  Unassigned
+{{/if}}
+{{#paper-button onClick=(action (mut showAssigneeDialog) true) raised=true  class="assigneeDialogButton" primary=false}}
+  Choose
+{{/paper-button}}
+
+  </div>
+
+  <div>
+{{#form.submit-button type="submit" raised=true id='save-btn' value="Save" primary=true  disabled=form.isInvalid}}Save{{/form.submit-button}}
+  </div>
+  {{#if showAssigneeDialog}}
+    {{#paper-selection-dialog id="assigneeDialog" origin=".assigneeDialogButton"
+      multiple=false
+      options=assigneeOptions
+      title="Assign to"
+      class="flex-50"
+      selected=model.assignee
+      onSelect=(action (mut model.assignee))
+      onClose=(action (mut showAssigneeDialog) false)
+      as |option index selected|}}
+      {{option.name}}
+    {{/paper-selection-dialog}}
+  {{/if}}
+{{/paper-form}}
+
+

@@ -19,9 +19,7 @@ export default DS.RESTAdapter.extend(DataAdapterMixin, {
    // 'x-vendor-secret': '12345'
   },
   pathForType: function(type) {
-    console.log("pathForType, type: " + type);
     const newType = Ember.String.camelize(type);
-    console.log("pathForType newType: " + newType);
     return pluralize(newType);
   },
   ajax: function(url, type, hash) {
@@ -36,7 +34,6 @@ export default DS.RESTAdapter.extend(DataAdapterMixin, {
       }
     }
 
-    console.log("ajax custom headers");
     if (this.headers !== undefined) {
       var headers = this.headers;
       if (hash) {
@@ -57,7 +54,6 @@ export default DS.RESTAdapter.extend(DataAdapterMixin, {
    * @augments DataAdapterMixin
    * @param query
    * @returns {string}
-   */
   urlForQueryRecord(query) {
     if (query.me) {
       delete query.me;
@@ -66,5 +62,6 @@ export default DS.RESTAdapter.extend(DataAdapterMixin, {
 
     return this._super(...arguments);
   },
+   */
 
 });

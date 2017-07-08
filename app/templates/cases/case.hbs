@@ -23,24 +23,31 @@
       <h3>Comments</h3>
       {{#if model.comments.length}}
 
+
+
+
+      {{#vertical-timeline as |timeline|}}
+
+
         {{#each model.comments as |item|}}
-        <div class="layout-row">
-          {{#if item.avatarUrl~}}
-            <img src={{item.createdBy.avatarUrl}} alt={{item.createdBy.name}} class="md-avatar">
-          {{~else~}}
-            {{ember-initials class="md-avatar"
-              size=50
-              name=item.createdBy.name
-              seedText=item.createdBy.name
-              defaultName='?'
-              textColor="white"
-              fontSize=55
-              fontWeight=100
-              fontFamily="Helvetica Neue Light, Arial, sans-serif"
-            }}
-          {{~/if}}
-          {{#paper-content class="md-padding "}}
-            {{item.createdBy.firstName}} {{item.createdBy.lastName}} commented {{moment-from-now item.createdDate interval=60000}}
+
+          {{#timeline.block as |block|}}
+            {{#if item.avatarUrl~}}
+              <img src={{item.createdBy.avatarUrl}} alt={{item.createdBy.name}} class="md-avatar">
+            {{~else~}}
+              {{ember-initials class="md-avatar"
+                size=50
+                name=item.createdBy.name
+                seedText=item.createdBy.name
+                defaultName='?'
+                textColor="white"
+                fontSize=55
+                fontWeight=100
+                fontFamily="Helvetica Neue Light, Arial, sans-serif"
+              }}
+            {{~/if}}
+
+            {{#block.content as |content|}}
               <div>
                 {{markdown-to-html
                   markdown=item.detail
@@ -48,9 +55,18 @@
                   literalMidWordUnderscores=true
                   simplifiedAutoLink=true}}
               </div>
-          {{/paper-content}}
-        </div>
+              {{#content.date}}
+                {{item.createdBy.firstName}} {{item.createdBy.lastName}} commented {{moment-from-now item.createdDate interval=60000}}
+              {{/content.date}}
+
+            {{/block.content}}
+          {{/timeline.block}}
+
+        {{! each comment}}
         {{/each}}
+
+
+      {{/vertical-timeline}}
 
       {{else}}
           <p>

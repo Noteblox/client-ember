@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import Table from 'ember-light-table';
+import SearchParamsMixin from './search-params';
 import {task} from 'ember-concurrency';
 
 const {
@@ -8,30 +9,8 @@ const {
   computed
 } = Ember;
 
-export default Ember.Mixin.create({
+export default Ember.Mixin.create(SearchParamsMixin, {
   store: inject.service(),
-  /**
-   * The model type key. Used to retrieve the model class and it's metadata
-   * from the injected store
-   */
-  modelName: null,
-  /**
-   * The current page number, one-based. The corresponding URL parameter will be converted
-   * to zero-based when fetching a page of models.
-   */
-  page: 0,
-  /**
-   * The page size. defaults to ten.
-   */
-  limit: 10,
-  /**
-   * Sorting direction, either asc or desc
-   */
-  dir: 'asc',
-  /**
-   * The property name to sort by
-   */
-  sort: 'id',
   /**
    * Maintains loading state
    */
@@ -52,26 +31,21 @@ export default Ember.Mixin.create({
   columns: null,
   table: null,
   /**
-   * Utility method used to obtain a proper URL param for sorting
-   */
-  jsonApiSort: Ember.computed('sort', 'dir', function () {
-    return this.get('dir') == "desc" ? '-' + this.get('sort') : this.get('sort');
-  }),
-  /**
    * Call super, initialize columns config if needed, create table component
    */
   init() {
     this._super(...arguments);
 
+    const modelName = this.get('modelName');
+
     // Find the right columns to use if none are given
     if (!this.get('columns')) {
       // Use default columns for model class if provided with a modelName
-      const modelName = this.get('modelName');
       console.log("table-common init, modelName: " + modelName);
       if (modelName) {
-        const ModelTypw = this.get('store').modelFor(modelName);
-        if (ModelTypw) {
-          this.set('columns', ModelTypw.columns);
+        const ModelType = this.get('store').modelFor(modelName);
+        if (ModelType) {
+          this.set('columns', ModelType.columns);
         }
       }
     }
@@ -86,16 +60,11 @@ export default Ember.Mixin.create({
     }
     this.set('table', table);
   },
-
   fetchRecords: task(function*() {
-    let sort = this.get('sort');
-    let searchParams = {
-      page: {
-        number: this.get('page') - 1,
-        size: this.get('limit')
-      },
-      sort: this.get('jsonApiSort')
-    };
+    // get search parameters
+    let searchParams = this.getSearchParams();
+    console.log('table search params: ');
+    console.log(searchParams);
     let records = yield this.get('store').query(this.get('modelName'), searchParams);
     this.get('model').pushObjects(records.toArray());
     this.set('meta', records.get('meta'));

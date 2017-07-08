@@ -1,19 +1,18 @@
 // app/controllers/login.js
 import Ember from "ember";
 
-export default Ember.Controller.extend({
-  session: Ember.inject.service(),
+import ApplicationController from '../application';
+
+export default ApplicationController.extend({
 
   actions: {
     authenticate: function() {
-      var credentials = this.getProperties('identification', 'password'),
-        authenticator = 'authenticator:custom';
+      const credentials = this.getProperties('identification', 'password');
 
-      this.get('session').authenticate(authenticator,
-        credentials).catch((reason)=>{
+      this.get('session').authenticate('authenticator:custom', credentials).catch((reason)=>{
         console.log("authentication error:");
         console.log(reason);
-        let responseJson = reason.responseJSON;
+        let responseJson = reason && reason.responseJSON ? reason.responseJSON : {};
         this.set('errorMessage', responseJson.title || responseJson.message || reason.error || reason);
       });
     }

@@ -1,9 +1,9 @@
 // app/controllers/forgot-password.js
 import Ember from "ember";
 import config from '../../config/environment';
+import ApplicationController from '../application';
 
-export default Ember.Controller.extend({
-  session: Ember.inject.service(),
+export default ApplicationController.extend({
 
   actions: {
     continue: function() {

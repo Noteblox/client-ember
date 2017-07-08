@@ -1,7 +1,10 @@
 import BaseSearch from "./base-search";
 
 const BlockActivityRoute = BaseSearch.extend({
-  modelTypeName: 'activity-log',
+  modelName: 'activity-log',
+  sort: 'createdDate',
+  dir: 'desc'
+
 });
 /*
 
@@ -20,8 +23,6 @@ BlockActivityRoute.reopen({
   actions: {
     showRow(source, model, e){
 
-      console.log("showRow, e: ");
-      console.log(e);
 
       let routeName;
       let routeModel;
@@ -41,11 +42,7 @@ BlockActivityRoute.reopen({
       else if (predicate == 'BECAME_MEMBER_OF') {
         routeName = 'blox.block.index'
         routeModel = model.get('context.id');
-        console.log("showRow, context: ");
-        console.log(model.get('context'));
       }
-      console.log("showRow, discriminator: " + discriminator + ", routeName: " + routeName + ", routeModel: ");
-      console.log(routeModel);
       if (routeName) {
         this.transitionTo(routeName, routeModel);
       }

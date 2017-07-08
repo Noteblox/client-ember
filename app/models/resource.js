@@ -13,8 +13,8 @@ const Resource = Ember.Mixin.create({
   createdDate: DS.attr('utc'),
   lastModifiedDate: DS.attr('utc'),
 
-  createdBy: DS.attr(),//DS.belongsTo('user' , {async: false }),
-  lastModifiedBy: DS.attr()//DS.belongsTo('user' , {async: false }),
+//  createdBy: DS.belongsTo('user', {async: false, inverse: null  }),
+//  lastModifiedBy: DS.belongsTo('user', {async: false, inverse: null }),
 });
 
 

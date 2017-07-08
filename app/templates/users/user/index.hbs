@@ -1,0 +1,24 @@
+<div class="layout-row">
+  <div class="layout-column">
+    <div class="center">
+    {{#if model.avatarUrl}}
+      <img src={{model.avatarUrl}} alt={{model.name}} class="profile-avatar" >
+    {{else}}
+     {{ember-initials class="profile-avatar"
+         size=200
+         name=model.name
+         seedText=model.name
+         defaultName=model.username
+         textColor="white"
+         fontSize=50
+         fontWeight=100
+         fontFamily="Helvetica Neue Light, Arial, sans-serif"}}
+    {{/if}}
+    </div>
+    <h1 class="center">{{model.name}} </h1>
+    <p class="subhead center"><span class="username">{{model.username}}</span> joined {{moment-from-now model.createdDate}}</p>
+    <div>
+      {{markdown-to-html model.description}}
+    </div>
+  </div>
+</div>

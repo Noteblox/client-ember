@@ -1,14 +1,34 @@
 import Ember  from 'ember';
 import BaseAuthenticated  from './base-authenticated';
+import SearchParamsMixin from '../mixins/search-params';
 
-export default BaseAuthenticated.extend( {
-  modelTypeName: null,
+export default BaseAuthenticated.extend(SearchParamsMixin, {
+  templateName: 'base-search',
   showRowRoute: null,
   // ember paper data table
   totalPages: 0,
   limitOptions: Ember.A([5,10,15]),
-  limit: 10,
-  page: 1,
+
+  init() {
+    this._super(arguments);
+    this.set('page', 1);
+  },
+  setupController(controller, model) {
+    // Call _super for default behavior
+    this._super(controller, model);
+
+    let belongsToName = this.get('belongsToName');
+    let belongsToValue = this.get('belongsToValue');
+    controller.set('modelName', this.get('modelName'));
+    controller.set('belongsToName', belongsToName);
+    controller.set('belongsToValue', belongsToValue);
+    controller.set('sort', this.get('sort'));
+    controller.set('dir', this.get('dir'));
+    controller.set('meta', this.get('meta'));
+
+    console.log('setupController, belongsToName: ' + belongsToName + ', belongsToValue: ' + belongsToValue);
+
+  },
   actions: {
     remove: function(model) {
       if(confirm('Are you sure?')) {
@@ -47,12 +67,8 @@ export default BaseAuthenticated.extend( {
   model: function(params) {
     console.log("model, params: ");
     console.log(params);
-    return this.store.query(this.get('modelTypeName'), {
-      page: {
-        number: params.number,
-        size: params.size
-      }
-    }).toArray();
+    const _this = this;
+    return this.store.query(this.get('modelName'), this.getSearchParams(params)).toArray();
   },
   queryParams: {
     page: {
@@ -62,23 +78,46 @@ export default BaseAuthenticated.extend( {
       refreshModel: true
     }
   },
+  beforeModel: function(transition) {
+
+    this._super(transition);
+    // get parent route model
+    let routeName = this.get('routeName');
+    const lastDotIndex = routeName.lastIndexOf('.');
+    if(lastDotIndex > 0){
+      routeName = routeName.substring(0, lastDotIndex);
+      const belongsToPropertyName = this.get('belongsToPropertyName');
+      console.log('base-search#beforeModel routeName: ' + routeName + ', belongsToPropertyName: ' + belongsToPropertyName + ', parentRouteModel: ');
+      const parentRouteModel = this.modelFor(routeName);
+      console.log(parentRouteModel);
+      if(parentRouteModel){
+        const belongsToValue = Ember.getWithDefault(parentRouteModel, belongsToPropertyName, null);
+        console.log('base-search#beforeModel parentRouteModelKey: ' + belongsToValue);
+        this.set('belongsToValue', belongsToValue);
+      }
+    }
+  },
   afterModel: function(model, transition) {
     this._super(model, transition);
+    console.log("base-search#afterModel, model: ");
+    console.log(model);
     if(model){
       const meta = model.get('meta');
+      console.log("base-search#afterModel, meta: ");
+      console.log(meta);
+
       if(meta){
+        this.set("meta", meta.get('meta'));
         this.set("page", meta.get('number'));
         this.set("limit", meta.get('size'));
         this.set("totalPages", meta.get('totalPages'));
         const links = model.meta.documentLinks;
-        console.log("afterModel, links: ");
-        console.log(links);
       }
     }
     /*
-    this.set("controller.page", this.get('totalPages'));
-    this.set("controller.limit", this.get('totalPages'));
-    this.set("controller.totalPages", this.get('totalPages'));*/
+     this.set("controller.page", this.get('totalPages'));
+     this.set("controller.limit", this.get('totalPages'));
+     this.set("controller.totalPages", this.get('totalPages'));*/
 
   }
 });

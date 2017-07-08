@@ -1,6 +1,5 @@
 {{#if session.isAuthenticated}}
 
-
  {{#paper-sidenav-container  class="site-sidenav"}}
 
    {{#paper-sidenav class="md-sidenav-left " name="left" open=leftSideBarOpen onToggle=(action (mut leftSideBarOpen)) }}
@@ -17,13 +16,13 @@
       {{#toolbar.tools}}
         {{#paper-list}}
           {{#paper-item as |controls| }}
-        {{#if sessionAccount.account.avatarUrl}}
-           <img src={{sessionAccount.account.avatarUrl}} alt={{sessionAccount.account.name}} class="md-avatar">
+        {{#if userDetails.user.avatarUrl}}
+           <img src={{userDetails.user.avatarUrl}} alt={{userDetails.user.name}} class="md-avatar">
          {{else}}
            {{ember-initials class="md-avatar"
                size=24
-               name=sessionAccount.account.name
-               seedText=sessionAccount.account.name
+               name=userDetails.user.name
+               seedText=userDetails.user.name
                defaultName='?'
                textColor="white"
                fontSize=34
@@ -32,7 +31,7 @@
            }}
          {{/if}}
          <div class="md-list-item-text">
-           <h3>{{sessionAccount.account.name}} <!--span class="username">({{sessionAccount.account.username}})</span--></h3>
+           <h3>{{userDetails.user.name}} <!--span class="username">({{userDetails.user.username}})</span--></h3>
          </div>
        {{/paper-item}}
        {{/paper-list}}
@@ -53,7 +52,7 @@
         {{paper-icon "apps"}}
         <p>Apps</p>
        {{/paper-item}}
-       {{#paper-item  onClick=(action (transition-to "blox"))}}
+       {{#paper-item  onClick=(action (transition-to "blocks"))}}
         {{paper-icon "domain"}}
         <p>Blox</p>
        {{/paper-item}}

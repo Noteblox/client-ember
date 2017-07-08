@@ -7,6 +7,9 @@ const {
 } = Ember;
 
 const App = BaseContext.extend({
+  viewRouteName: 'space-apps.app',
+  workflow: DS.attr(),//DS.belongsTo('workflow'),
+  cases: DS.hasMany('case', {async: true, polymorphic: true/*, inverse: 'parentCase'*/})
 
 });
 
