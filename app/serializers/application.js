@@ -76,14 +76,16 @@ export default DS.JSONSerializer.extend({
 
       // setup data
       let content = payload.content;
-      let ret = new Array(content.length);
-      for (let i = 0, l = content.length; i < l; i++) {
-        let item = content[i];
-        let { data, included } = this.normalize(primaryModelClass, item);
-        if (included) {
-          documentHash.included.push(...included);
+      let ret = new Array(content ? content.length : 0);
+      if(content){
+        for (let i = 0, l = content.length; i < l; i++) {
+          let item = content[i];
+          let { data, included } = this.normalize(primaryModelClass, item);
+          if (included) {
+            documentHash.included.push(...included);
+          }
+          ret[i] = data;
         }
-        ret[i] = data;
       }
       documentHash.data = ret;
 
@@ -104,6 +106,8 @@ export default DS.JSONSerializer.extend({
       }
     }
 
+    console.log('_normalizeResponse, documentHash: ');
+    console.log(documentHash);
     return documentHash;
   },
   /*
@@ -127,8 +131,8 @@ export default DS.JSONSerializer.extend({
         attributes:    this.extractAttributes(modelClass, resourceHash),
         relationships: this.extractRelationships(modelClass, resourceHash)
       };
-      console.log('normalize, data: ');
-      console.log(data);
+      //console.log('normalize, data: ');
+      //console.log(data);
       this.applyTransforms(modelClass, data.attributes);
     }
 

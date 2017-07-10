@@ -15,12 +15,12 @@
       <p>Starus: <strong>{{model.status.name}}</strong>, created by  {{model.createdBy.firstName}} {{model.createdBy.lastName}} {{moment-from-now model.createdDate}} </p>
   </div>
   <div class="layout-row flex">
-    <div class="layout-column flwx-70">
+    <div class="layout-column flwx-70 case-comments-container">
       <!-- case detail -->
-      {{markdown-to-html model.detail}}
+      <div class="detail">{{markdown-to-html model.detail}}</div>
 
       <!-- case comments -->
-      <h3>Comments</h3>
+      <h3 class="center">Comments</h3>
       {{#if model.comments.length}}
 
 
@@ -33,9 +33,9 @@
 
           {{#timeline.block as |block|}}
             {{#if item.avatarUrl~}}
-              <img src={{item.createdBy.avatarUrl}} alt={{item.createdBy.name}} class="md-avatar">
+              <img src={{item.createdBy.avatarUrl}} alt={{item.createdBy.name}} class="timeline-image">
             {{~else~}}
-              {{ember-initials class="md-avatar"
+              {{ember-initials class="timeline-image"
                 size=50
                 name=item.createdBy.name
                 seedText=item.createdBy.name

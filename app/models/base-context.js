@@ -34,12 +34,17 @@ BaseContext.reopenClass({
       sortable: false,
       cellComponent: 'user-avatar'
     }, {
-      label: 'App',
-      cellComponent: 'space-apps/light-cell',
+      label: 'Title',
+      cellComponent: 'blocks/light-cell',
       valuePath: 'title',
     }, {
-      label: 'Title',
-      valuePath: 'title',
+      label: 'Visibility',
+      valuePath: 'visibility',
+    },{
+      label: 'Members',
+      valuePath: 'membershipsCount',
+      width: '60px',
+      cellComponent: 'blocks/member-count-cell',
     }];
   })
 });

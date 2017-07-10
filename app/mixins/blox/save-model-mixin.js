@@ -5,7 +5,7 @@ export default Ember.Mixin.create({
     save: function() {
       var route = this;
       this.currentModel.save().then(function() {
-        route.transitionTo('blox');
+        route.transitionTo('blocks');
       }, function() {
         console.log('Failed to save the model');
       });

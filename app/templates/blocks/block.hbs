@@ -1,4 +1,4 @@
-{{#paper-tabs class='md-no-tab-content' centerTabs=true borderBottom=true as |tabs|}}
+{{#paper-tabs class='md-no-tab-content' centerTabs=true borderBottom=false as |tabs|}}
    {{tabs.tab label="Activity" onSelect=(action (transition-to "blocks.block.activity" model))}}
    {{tabs.tab label="Members" onSelect=(action (transition-to "blocks.block.members" model))}}
    {{tabs.tab label="Requests" onSelect=(action (transition-to "blocks.block.membership-requests" model))}}

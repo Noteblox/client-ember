@@ -50,6 +50,9 @@ export default Ember.Mixin.create({
    * The property name of related object to use for the query. Defaults to 'id'
    */
   belongsToPropertyName: 'id',
+  belongsToPath: Ember.computed('belongsToName', 'belongsToPropertyName', function () {
+    return this.get('belongsToName')+'.'+ this.get('belongsToPropertyName');//this.get('dir') == "desc" ? '-' + this.get('sort') : this.get('sort');
+  }),
   /**
    * The property value of the *-to-one relationship to use when searching
    */
@@ -58,18 +61,16 @@ export default Ember.Mixin.create({
     // ensure params is not undefined
     params || (params = {});
 
-    console.log('getSearchParams, given params:')
+    console.log('getSearchParams, page: ' + this.get('page') + ', given params:')
     console.log(params);
     let sort = this.get('sort');
     let searchParams = {};
-
-    let pageNumber = params.number ? params.number : this.get('page') - 1;
-    let pageSize = params.size ? params.size : this.get('limit') - 1;
-    let belongsToName = this.get('belongsToName');
-    let belongsToPropertyName = this.get('belongsToPropertyName');
+    let pageNumber = Ember.$.isNumeric(params.number) ? params.number : this.get('page') - 1;
+    let pageSize = Ember.$.isNumeric(params.size) ? params.size : this.get('limit');
+    let belongsToPath = this.get('belongsToPath');
     let belongsToValue = this.get('belongsToValue');
 
-    console.log('getSearchParams, belongsToName: ' + belongsToName + ', belongsToValue: ' + belongsToValue)
+    console.log('getSearchParams, belongsToPath: ' + belongsToPath + ', belongsToValue: ' + belongsToValue)
 
     // add sorting
     searchParams.sort = this.get('jsonApiSort');
@@ -88,8 +89,8 @@ export default Ember.Mixin.create({
       searchParams['_ps'] = pageSize;
 
       // set parent
-      if(belongsToName && belongsToValue){
-        searchParams[belongsToName + '.' + belongsToPropertyName] = belongsToValue;
+      if(belongsToPath && belongsToValue){
+        searchParams[belongsToPath] = belongsToValue;
       }
 
     }

@@ -5,6 +5,7 @@ import DS from "ember-data";
 const Resource = Ember.Mixin.create({
 
   pathFragment: DS.attr('string'),
+  path: DS.attr('string'),
 
   name: DS.attr('string'),
   title: DS.attr('string'),
@@ -13,8 +14,8 @@ const Resource = Ember.Mixin.create({
   createdDate: DS.attr('utc'),
   lastModifiedDate: DS.attr('utc'),
 
-//  createdBy: DS.belongsTo('user', {async: false, inverse: null  }),
-//  lastModifiedBy: DS.belongsTo('user', {async: false, inverse: null }),
+  createdBy: DS.attr(),//DS.belongsTo('user', {async: false, inverse: null  }),
+  lastModifiedBy: DS.attr() //DS.belongsTo('user', {async: false, inverse: null }),
 });
 
 

@@ -5,6 +5,35 @@ import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-rout
 const { service } = Ember.inject;
 
 export default Ember.Route.extend(AuthenticatedRouteMixin,{
+  breadCrumbModelTitleProperty: 'name',
+  // add calculated property dynamically based on "breadCrumbModelTitleProperty"
+  // to determine breadcrumb name
+  afterModel(model, transition) {
+    console.log('base-authenticated#afterModel');
+    this._super(...arguments);
+
+    let breadCrumbSet = false;
+
+    let modelTitleProperty = model ?  this.get('breadCrumbModelTitleProperty') : false;
+    if(modelTitleProperty){
+      modelTitleProperty = `controller.model.${modelTitleProperty}`;
+
+      Ember.defineProperty(this, 'breadCrumb', Ember.computed('breadCrumbTitle', modelTitleProperty, function(){
+
+        let breadCrumb;
+        const modelName = this.get(modelTitleProperty) || false;
+        console.log('breadcrumb model-based title: ' + modelName);
+        if(modelName){
+          breadCrumb = {};
+          breadCrumb.title = modelName;
+        }
+        return breadCrumb;
+      }));
+    }
+    else {
+      console.log("afterModel: no breadcrumb modelTitleProperty was found")
+    }
+  },
   //authenticationRoute: 'auth.login'
   /*
   userSession: service('session-account'),

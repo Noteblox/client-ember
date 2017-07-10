@@ -2,7 +2,7 @@
 
 {{#link-to "users.user" row.subject.id}}{{row.subject.name}}{{/link-to}}
 
-{{row.predicateDescription}}
+<span class="font-weight-normal">{{row.predicateDescription}}</span>
 
 {{#if row.object.name}}
   {{#if row.object.parentApplication}}
@@ -12,7 +12,7 @@
   {{else}}
     <span>{{row.object.name}}</span>
   {{/if}}
-  {{#if row.context}} in {{/if}}
+  {{#if row.context}} <span class="font-weight-normal">in</span> {{/if}}
 {{/if}}
 {{#if row.context}}
   {{#if row.context.workflow}}

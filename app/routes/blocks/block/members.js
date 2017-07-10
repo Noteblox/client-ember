@@ -1,13 +1,34 @@
 import Ember from 'ember';
-import BaseAuthenticated  from '../../base-authenticated';
+import BaseSearch  from '../../base-search';
 
-export default BaseAuthenticated.extend({
-  breadCrumbModelTitleProperty: null,
+const MemberSearchRoute = BaseSearch.extend({
+
+  modelName: 'context-membership',
+  showRowRoute: 'users.user',
+  belongsToName: 'context',
   breadCrumb: {
     title: 'Members'
   },
-  model: function() {
-    var spaceId = this.paramsFor('blox.block').block_id;
-    return this.store.query('context-membership', {'context': spaceId});
+});
+
+
+MemberSearchRoute.reopen({
+
+  actions: {
+
+    showRow(source, model, e){
+      const route = this.get('showRowRoute');
+      console.log("showRow, route: " + route + ", args: ");
+      console.log(arguments);
+      console.log("showRow, model: ");
+      console.log(model);
+      console.log("showRow, e: ");
+      console.log(e);
+      if(route){
+        this.transitionTo(route, model.get('user').id);
+      }
+    },
   }
 });
+
+export default MemberSearchRoute;

@@ -1,6 +1,49 @@
-<p>
-  {{link-to "Space-app list" "space-apps.index" }}
-</p>
 
-<h1>New Space-app</h1>
-{{partial "space-apps/form"}}
+{{#paper-stepper currentStep=currentStep vertical=true onStepChange=(action (mut currentStep))
+   as |stepper|}}
+
+  {{#stepper.step label="Select space type" as |step|}}
+    {{#step.body}}
+      {{paper-input id="name" label="Name" type="text" value=model.name onChange=(action (mut model.name)) required=true}}
+      {{paper-input id="title" label="Title" type="text" value=model.title onChange=(action (mut model.title)) required=true}}
+      {{paper-input block=true textarea=true id="detail" label="Detail" type="text" value=model.detail onChange=(action (mut model.detail)) required=true}}
+      {{paper-input id="basePath" label="Website" type="text" value=model.basePath onChange=(action (mut model.basePath)) required=true}}
+
+
+    {{/step.body}}
+    {{#step.actions as |nextStep previousStep|}}
+      {{#paper-button primary=true raised=true onClick=(action nextStep)}}
+        Continue
+      {{/paper-button}}
+      {{#paper-button onClick=(action previousStep)}}
+        Back
+      {{/paper-button}}
+    {{/step.actions}}
+  {{/stepper.step}}
+ <!--end of step 1 -->
+
+ {{#stepper.step label="Statuses" optional=true as |step|}}
+   {{#step.body}}
+    <p>Enter statuses</p>
+   {{/step.body}}
+   {{#step.actions as |nextStep previousStep|}}
+     {{#paper-button onClick=(action previousStep)}}
+       Back
+     {{/paper-button}}
+   {{/step.actions}}
+ {{/stepper.step}}
+
+ {{#stepper.step label="Members" optional=true as |step|}}
+   {{#step.body}}
+    <p>Select members</p>
+   {{/step.body}}
+   {{#step.actions as |nextStep previousStep|}}
+     {{#paper-button onClick=(action previousStep)}}
+       Back
+     {{/paper-button}}
+   {{/step.actions}}
+ {{/stepper.step}}
+
+
+
+{{/paper-stepper}}

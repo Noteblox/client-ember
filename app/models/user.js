@@ -22,7 +22,8 @@ const User = DS.Model.extend({
 });
 
 User.reopenClass({
-  columns: computed(function() {
+
+  columns: computed(function () {
     return [{
       label: 'Avatar',
       valuePath: 'avatarUrl',

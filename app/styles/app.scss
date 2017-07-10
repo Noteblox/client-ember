@@ -11,7 +11,7 @@ $border-common-collor: rgb(211,211,211);
 $border-common: 1px solid $border-common-collor;
 $border-common-dotted: 1px dotted $border-common-collor;
 $primary-color: rgb(70,133,248);//rgb(63, 81, 181); /*equal to "indigo"*/
-
+$detail-color: rgb(127, 140, 151);
 
 //@import "ember-cli-bootstrap-4/bootstrap";
 @import "color-palette";
@@ -20,7 +20,9 @@ $primary-color: rgb(70,133,248);//rgb(63, 81, 181); /*equal to "indigo"*/
 @import "ember-paper-expansion-panel";
 @import "ember-paper-stepper";
 @import "ember-paper-selection-dialog";
-@import "ember-vertical-timeline";
+@import "./ember-vertical-timeline";
+
+
 
 
 /* ember-paper-dialog*/
@@ -32,13 +34,18 @@ md-radio-button.md-default-theme.md-checked .md-off, md-radio-button.md-checked 
 }
 
 
-html {
+div, p, a, h1, h2, h3, h4, h5, h6, header {
   font-family: 'Lato', sans-serif;
+  color: rgb(105, 105, 105);
 }
 
 a:link, a:visited, a:active, a:hover {
   color: $primary-color;
   text-decoration: none;
+}
+
+td.lt-cell a:link, td.lt-cell a:visited, td.lt-cell a:active, td.lt-cell a:hover {
+  color: rgb(105, 105, 105);
 }
 
 img.avatar {
@@ -59,6 +66,7 @@ img.avatar {
   text-align: center;
 }
 
+
 nav.top-nav {
 }
 
@@ -66,9 +74,9 @@ body {
   background-color: rgb(249,249,251);
   font-size: 1.125rem;
   line-height: 1.5rem;
-  font-family: Lato,appleLogo,sans-serif;
+  /*font-family: Lato,appleLogo,sans-serif;
   font-variant-ligatures: common-ligatures;
-  color: rgb(105, 105, 105);
+  color: rgb(105, 105, 105);*/
 }
 
 .logo {
@@ -105,7 +113,9 @@ h1 span.title{
 .lt-cell img.avatar {
   display:block;
 }
-
+.align-right {
+  text-align: right;
+}
 .no-padding {
   padding: 0px;
 }
@@ -155,7 +165,7 @@ md-sidenav > md-card {
   font-weight: bolder;
   font-size: smaller;
   text-transform: lowercase;
-  color: #888;
+  color: $detail-color;
 }
 
 md-card {
@@ -198,7 +208,33 @@ md-card {
   }
 }
 
+.detail, .detail div, .detail p {
+  color: rgb(105, 105, 105);
+  font-family: 'Droid Serif', 'Open Sans', serif;
+}
+/* ------------------------- timeline ------------------------- */
 
+/* timeline vars */
+// Colors
+$main-text: rgb(105, 105, 105); // main text
+$link: #acb7c0; // anchor tags
+$background: #e9f0f5; // body background color
+
+$color-1: #303e49; // blue dark
+$color-2: #c03b44; // red
+$color-3: #ffffff; // white
+$color-4: #75ce66; // green
+$color-5: #f0ca45; // yellow
+
+// Fonts
+$primary-font: 'Droid Serif', serif;
+$secondary-font: 'Open Sans', sans-serif;
+.case-comments-container > .vertical-timeline {
+  margin-top:0;
+}
+.timeline-content, .timeline-content div, .timeline-content p  {
+  font-family: 'Droid Serif', 'Open Sans', serif;
+}
 /* ------------------------- breadcrumb ------------------------- */
 .breadcrumb {
   margin: 0;
@@ -272,9 +308,12 @@ md-card {
 /* light table*/
 
 .icon-cell{
-  font-size: 25px;
+  font-size: 36px;
+  color: #c0c0c0;
 }
-
+.font-weight-normal {
+  font-weight: normal;
+}
 .spinner {
   margin: 15px auto;
   width: 50px;

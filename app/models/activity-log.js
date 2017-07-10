@@ -28,10 +28,10 @@ const ActivityLog = DS.Model.extend({
 
 
 ActivityLog.reopenClass({
-  columns: computed(function() {
+  columns: computed(function () {
     return [{
       label: '',
-      width: '20px',
+      width: '50px',
       sortable: false,
       valuePath: 'predicateDescription',
       cellComponent: 'icon-cell'

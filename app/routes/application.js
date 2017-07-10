@@ -7,30 +7,6 @@ const { service } = Ember.inject;
 export default Ember.Route.extend(ApplicationRouteMixin, {
 
   session: service('session'),
-  breadCrumbModelTitleProperty: 'name',
-  // add calculated property dynamically based on "breadCrumbModelTitleProperty"
-  // to determine breadcrumb name
-  afterModel(model, transition) {
-    this._super(...arguments);
-
-    let breadCrumbSet = false;
-
-    let modelTitleProperty = model ?  this.get('breadCrumbModelTitleProperty') : false;
-    if(modelTitleProperty){
-      modelTitleProperty = `controller.model.${modelTitleProperty}`;
-
-      Ember.defineProperty(this, 'breadCrumb', Ember.computed('breadCrumbTitle', modelTitleProperty, function(){
-
-        let breadCrumb;
-        const modelName = this.get(modelTitleProperty) || false;
-        if(modelName){
-          breadCrumb = {};
-          breadCrumb.title = modelName;
-        }
-        return breadCrumb;
-      }));
-    }
-  },
   /**
    This method handles the session's
    {{#crossLink "SessionService/authenticationSucceeded:event"}}{{/crossLink}}

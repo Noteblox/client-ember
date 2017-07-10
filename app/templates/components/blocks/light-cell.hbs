@@ -1,11 +1,9 @@
-<h4 class="no">{{row.title}}</h4>
+<!-- components/space-apps/light-cell.hbs -->
 <div class="subhead">
-
-<span class="username">{{row.name}}</span>
-
+{{row.name}} owned by {{row.owner.username}}
 {{#if row.space}}
-  {{paper-icon "domain"}} {{row.space.title}},
-{{else}}
-  {{paper-icon "account"}} {{item.owner.name}}
+  in {{row.space.title}}
 {{/if}}
 </div>
+<h4 class="no">{{row.title}}</h4>
+<span class="flex"></span>

@@ -1,13 +1,13 @@
-import Ember from 'ember';
-import BaseAuthenticated  from '../../base-authenticated';
+import BaseSearch  from '../../base-search';
 
-export default BaseAuthenticated.extend({
-  breadCrumbModelTitleProperty: null,
-  breadCrumb: {
-    title: 'Apps'
-  },
-  model: function() {
-    var id = this.paramsFor('blox.block').block_id;
-    return this.store.query('space-app', {'space': id});
-  }
+const Route = BaseSearch.extend( {
+  modelName: 'space-app',
+  belongsToName: 'space',
+  showRowRoute: 'space-apps.app',
+  showNewRowRoute: 'space-apps.new',
+
 });
+
+
+
+export default Route;

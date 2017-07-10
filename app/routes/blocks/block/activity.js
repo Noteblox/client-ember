@@ -3,16 +3,11 @@ import BaseSearch  from '../../base-search';
 
 const BlockActivityRoute = BaseSearch.extend( {
   modelName: 'activity-log',
-  showRowRoute: 'space-apps',
   belongsToName: 'context',
   /**
    * The property name of related object to use for the query. Defaults to 'id'
    */
   belongsToPropertyName: 'path',
-  getBelongsToValue() {
-    const val = this.get('belongsToValue');
-    return val ? val + '%' : val;
-  },
 });
 
 BlockActivityRoute.reopen({

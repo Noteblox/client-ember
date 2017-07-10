@@ -41,10 +41,10 @@ const BaseCase = DS.Model.extend(Resource, {
 
 
 BaseCase.reopenClass({
-  columns: computed(function() {
+  columns: computed(function () {
     return [{
       label: 'Status',
-      width: '20px',
+      width: '50px',
       sortable: false,
       valuePath: 'statusName',
       cellComponent: 'icon-cell'

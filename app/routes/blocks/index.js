@@ -1,10 +1,11 @@
-import Ember from 'ember';
-import BaseAuthenticatedRoute from '../base-authenticated';
+import BaseSearch  from '../base-search';
 
-export default BaseAuthenticatedRoute.extend({
-  beforeModel: function(model, transition) {
-
-    this.transitionTo('blocks.owned');
-
-  }
+const Route = BaseSearch.extend( {
+  modelName: 'block',
+  showRowRoute: 'blocks.block',
+  showNewRowRoute: 'blocks.new',
 });
+
+
+
+export default Route;
